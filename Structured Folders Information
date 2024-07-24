@@ -1,0 +1,71 @@
+NOTE: This is a Feature-First approach of folder structure
+
+----------------- Bindings --------------------
+
+In this folder we are going to deal with all the get x commands
+
+------------------ common ---------------------
+
+In the common folder, we are going to place all the common styles and widgets and anything else that will be common in the project
+
+------------------- data ----------------------
+
+In the data folder, we will have two things that are going to deal with cloud queries:
+
+(1) repositories: This mostly deals with FireStore, FireBase
+(2) services: This deals with APIs and Payment Services
+
+
+----------------- features --------------------
+
+In the features folder, we will have 3 features:
+
+(1) authentication
+(2) personalization
+(3) shop
+
+Each above feature will contains there own:
+
+(1) controllers
+(2) models
+(3) screens
+
+NOTE: You can add more features in the features folder in future
+
+--------------- localization ------------------
+
+This folder is for languages, we will in future gonna add languages
+
+------------------ utils ---------------------- (V.IMP)
+
+This folder is very IMPORTANT folder. It Contains 9 things:
+
+(1) constants
+(2) device
+(3) formatters
+(4) helpers
+(5) http
+(6) local_storage
+(7) logging
+(8) theme
+(9) validators
+
+(1) constants: Inside constants, we will place all the files whose variable are constant and will never change
+    This includes: colors.dart, enums.dart, image_strings.dart, texts.dart, sizes.dart, api_constants.dart
+
+(2) device: Everything related to device functions will going to be inside the device folder.
+    These functions includes writing helper functions like: how to hide keyboard, Status Bar Color, landscape/horizontal orientation, set full screen, set screen height, set screen width etc.
+
+(3) formatters: In this folder we will place all the format related things.
+    This includes: date formatters, helper function to set date format, currency formats, phone number formats etc.
+
+(4) helpers: We are going to add all helper functions inside this folder.
+    Helper function means that only a user input is taken (checkbox, selectors etc) and the task will be done automatically. The examples are provided above
+
+(5) http, (6) local_storage, (7) logging are all kinds of helper functions
+
+(8) theme: This folder is very IMPORTANT as this contains the pre-defined theme for every app.
+    If you have defined theme for every component inside your app then your 80% task IS DONE. Then you only have to place each components inside the app.
+
+(9) validators: This folder will contains the validators.
+    These validators includes validators of email, password, phone numbers, full name etc.

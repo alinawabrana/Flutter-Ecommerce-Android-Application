@@ -1,0 +1,21 @@
+# This is the splash screen that will appear when we open up the application
+flutter_native_splash:
+  color: "#FFFFFF"    # This is the background color in light mode
+  color_dark: "#272727"    # This is the background color in dark mode
+  image: assets/logos/t-store-splash-logo-black.png   # This is the image/logo to be displayed in light mode
+  image_dark: assets/logos/t-store-splash-logo-white.png   # This is the image/logo to be displayed in dark mode
+
+
+  #If you are using Android 12 then you should add the above codes in below section
+  android_12:
+    color: "#FFFFFF"
+    color_dark: "#272727"
+    image: assets/logos/t-store-splash-logo-black.png
+    image_dark: assets/logos/t-store-splash-logo-white.png
+
+  # As you are not using any web splash therefore the web will be false
+  web: false
+
+  # IMPORTANT NOTE:
+  # Now to create a splash screen you have to run following command on terminal:
+  # flutter pub run flutter_native_splash:create --path=splash.yaml

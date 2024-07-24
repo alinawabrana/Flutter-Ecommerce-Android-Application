@@ -1,0 +1,83 @@
+name: e_commerce_app
+description: "A new Flutter project."
+
+
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.3.0 <4.0.0'
+
+#-------------------- PACKAGES: --------------------#
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Utility Packages
+  http: ^1.1.0
+  intl: ^0.18.1
+  logger: ^2.0.1
+  url_launcher: ^6.1.12
+  smooth_page_indicator: ^1.1.0
+
+  # This will create a screen that will appear when we open the app, containing the logo of the app.
+  # For this purpose you have to write a separate code for it in this yaml file or in a separate file
+  # Lets create a new file named splash.yaml and write code in it of what should appear in a splash screen
+  flutter_native_splash: ^2.3.2
+
+  # Icons
+  iconsax: ^0.0.8     # This is the newly added Icons which we will use in our Project
+  cupertino_icons: ^1.0.6
+
+  # State Management
+  get: ^4.6.5         # This is the  State Management that we will use in our Project
+  get_storage: ^2.1.1
+
+  # Product Specific
+
+
+#-------------------- PACKAGES ENDS: --------------------#
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^3.0.0
+
+
+
+flutter:
+  uses-material-design: true
+
+
+  #-------------------- LOCAL ASSETS: --------------------#
+  assets:
+    - assets/icons/brands/
+    - assets/images/content/
+    - assets/images/banners/
+    - assets/images/reviews/
+    - assets/images/products/
+    - assets/images/on_boarding_images/
+    - assets/images/animations/
+    - assets/logos/
+
+  #-------------------- LOCAL FONTS: --------------------#
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Light.ttf
+          weight: 300
+        - asset: assets/fonts/Poppins-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/Poppins-Italic.ttf
+          style: italic
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/Poppins-MediumItalic.ttf
+          weight: 500
+          style: italic
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 800
