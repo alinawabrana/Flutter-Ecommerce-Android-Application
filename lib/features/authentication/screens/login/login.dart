@@ -7,8 +7,8 @@ import 'package:e_commerce_app/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../../common/widgets.login_signup/form_divider.dart';
-import '../../../../common/widgets.login_signup/social_buttons.dart';
+import '../../../../common/widgets/login_signup/form_divider.dart';
+import '../../../../common/widgets/login_signup/social_buttons.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
