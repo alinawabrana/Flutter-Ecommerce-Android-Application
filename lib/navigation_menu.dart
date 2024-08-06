@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/features/shop/screens/home/home.dart';
+import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:e_commerce_app/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,13 +17,13 @@ class NavigationMenu extends StatelessWidget {
         bottomNavigationBar: NavigationBar(
           height: 80,
           elevation: 0,
-          selectedIndex: 0,
+          selectedIndex: controller.selectedIndex.value,
           onDestinationSelected: (index) =>
               controller.selectedIndex.value = index,
-          backgroundColor: darkMode ? Colors.black : Colors.white,
+          backgroundColor: darkMode ? TColors.black : TColors.white,
           indicatorColor: darkMode
-              ? Colors.white.withOpacity(0.1)
-              : Colors.black.withOpacity(0.1),
+              ? TColors.white.withOpacity(0.1)
+              : TColors.black.withOpacity(0.1),
           destinations: const [
             NavigationDestination(icon: Icon(Iconsax.home), label: "home"),
             NavigationDestination(icon: Icon(Iconsax.shop), label: "store"),
