@@ -1,7 +1,12 @@
 import 'package:e_commerce_app/features/shop/screens/home/widget/home_appbar.dart';
+import 'package:e_commerce_app/features/shop/screens/home/widget/home_categories.dart';
+import 'package:e_commerce_app/utils/constants/colors.dart';
+import 'package:e_commerce_app/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
+import '../../../../common/widgets/custom_shapes/containers/search_container.dart';
+import '../../../../common/widgets/texts/section_heading.dart';
 
 /// TCircularContainer is a separate class that we created to create a container having two half circles stacked at the right side of the screen.
 /// After that we wrap the Container with the ClipPath widgets to create three clip Paths: (1) the clip at left bottom (2) A straight line after that (3) the clip at right bottom
@@ -25,10 +30,38 @@ class HomeScreen extends StatelessWidget {
                 children: [
                   /// -- AppBar -- Tutorial [Section # 3, video # 3]
                   THomeAppBar(),
+                  SizedBox(
+                    height: TSizes.spaceBtwSections,
+                  ),
 
                   /// -- SearchBar -- Tutorial [Section # 3, video # 4]
+                  TSearchContainer(
+                    text: 'Search in Store',
+                  ),
+                  SizedBox(
+                    height: TSizes.spaceBtwSections,
+                  ),
 
                   /// -- Categories -- Tutorial [Section # 3, video # 4]
+                  Padding(
+                    padding: EdgeInsets.only(left: TSizes.defaultSpace),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        /// -- Headings
+                        TSectionHeading(
+                          text: 'Popular Categories',
+                          textColor: TColors.white,
+                        ),
+                        SizedBox(
+                          height: TSizes.spaceBtwItems,
+                        ),
+
+                        /// -- Categories
+                        THomeCategories()
+                      ],
+                    ),
+                  )
                 ],
               ),
             ),
