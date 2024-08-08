@@ -1,6 +1,8 @@
 import 'package:e_commerce_app/features/shop/screens/home/widget/home_appbar.dart';
 import 'package:e_commerce_app/features/shop/screens/home/widget/home_categories.dart';
+import 'package:e_commerce_app/features/shop/screens/home/widget/promo_slider.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
+import 'package:e_commerce_app/utils/constants/image_strings.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
 
@@ -52,6 +54,7 @@ class HomeScreen extends StatelessWidget {
                         TSectionHeading(
                           text: 'Popular Categories',
                           textColor: TColors.white,
+                          showActionButton: false,
                         ),
                         SizedBox(
                           height: TSizes.spaceBtwItems,
@@ -62,6 +65,18 @@ class HomeScreen extends StatelessWidget {
                       ],
                     ),
                   )
+                ],
+              ),
+            ),
+
+            /// Body -- Tutorial [Section # 3 video # 5]
+            Padding(
+              padding: EdgeInsets.all(TSizes.defaultSpace),
+              child: TPromoSlider(
+                banners: [
+                  TImages.promoBanner1,
+                  TImages.promoBanner2,
+                  TImages.promoBanner3
                 ],
               ),
             ),

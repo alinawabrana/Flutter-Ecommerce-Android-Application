@@ -32,6 +32,7 @@ dependencies:
   # State Management
   get: ^4.6.5         # This is the  State Management that we will use in our Project
   get_storage: ^2.1.1
+  carousel_slider: ^4.2.1
 
   # Product Specific
 
