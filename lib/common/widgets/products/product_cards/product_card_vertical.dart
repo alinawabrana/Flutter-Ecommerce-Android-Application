@@ -31,6 +31,7 @@ class TProductCardVertical extends StatelessWidget {
             borderRadius: BorderRadius.circular(TSizes.productImageRadius),
             color: darkMode ? TColors.darkerGrey : TColors.white),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             /// -- Thumbnail, Wishlist Button, Discount Tag
             TRoundedContainer(
