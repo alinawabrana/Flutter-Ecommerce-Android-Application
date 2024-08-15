@@ -11,6 +11,7 @@ import '../../../styles/shadows.dart';
 import '../../icons/t_circular_icon.dart';
 import '../../texts/product_price_text.dart';
 import '../../texts/product_title_text.dart';
+import '../../texts/t_brand_title_text_with_verified_icon.dart';
 
 class TProductCardVertical extends StatelessWidget {
   const TProductCardVertical({super.key});
@@ -80,70 +81,60 @@ class TProductCardVertical extends StatelessWidget {
             ),
 
             /// -- Details
-            Padding(
-              padding: const EdgeInsets.only(left: TSizes.sm),
+            const Padding(
+              padding: EdgeInsets.only(left: TSizes.sm),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const TProductTitleText(
+                  TProductTitleText(
                     title: 'Green Nike Air Shoes',
                     smallSize: true,
                   ),
-                  const SizedBox(
+                  SizedBox(
                     height: TSizes.spaceBtwItems / 2,
                   ),
-                  Row(
-                    children: [
-                      Text(
-                        'Nike',
-                        overflow: TextOverflow.ellipsis,
-                        maxLines: 1,
-                        style: Theme.of(context).textTheme.labelMedium,
-                      ),
-                      const SizedBox(
-                        width: TSizes.xs,
-                      ),
-                      const Icon(
-                        Iconsax.verify5,
-                        color: TColors.primaryColor,
-                        size: TSizes.iconXs,
-                      ),
-                    ],
+                  TBrandTitleWithVerifiedIcon(
+                    title: 'Nike',
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      /// Price
-                      const TProductPriceText(
-                        price: "35.0",
-                        isLarge: true,
-                      ),
-
-                      Container(
-                        decoration: BoxDecoration(
-                          color: darkMode ? TColors.light : TColors.dark,
-                          borderRadius: const BorderRadius.only(
-                            topLeft: Radius.circular(TSizes.cardRadiusMd),
-                            bottomRight:
-                                Radius.circular(TSizes.productImageRadius),
-                          ),
-                        ),
-                        child: SizedBox(
-                          width: TSizes.iconLg * 1.2,
-                          height: TSizes.iconLg * 1.2,
-                          child: Center(
-                            child: Icon(
-                              Iconsax.add,
-                              color: darkMode ? TColors.black : TColors.white,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  )
                 ],
               ),
             ),
+
+            /// NOTE: The reason why Spacer didn't work inside the above Column is because that Column is inside another Column which bound its size. That's why we took the spacer along with all the below code outside the inner Column
+            const Spacer(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                /// Price
+                const Padding(
+                  padding: EdgeInsets.only(left: TSizes.sm),
+                  child: TProductPriceText(
+                    price: "35.0",
+                    isLarge: true,
+                  ),
+                ),
+
+                Container(
+                  decoration: BoxDecoration(
+                    color: darkMode ? TColors.light : TColors.dark,
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(TSizes.cardRadiusMd),
+                      bottomRight: Radius.circular(TSizes.productImageRadius),
+                    ),
+                  ),
+                  child: SizedBox(
+                    width: TSizes.iconLg * 1.2,
+                    height: TSizes.iconLg * 1.2,
+                    child: Center(
+                      child: Icon(
+                        Iconsax.add,
+                        color: darkMode ? TColors.black : TColors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            )
           ],
         ),
       ),

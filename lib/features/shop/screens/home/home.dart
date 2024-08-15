@@ -4,6 +4,7 @@ import 'package:e_commerce_app/features/shop/screens/home/widget/promo_slider.da
 import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:e_commerce_app/utils/constants/image_strings.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
+import 'package:e_commerce_app/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
@@ -25,6 +26,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final darkMode = THelperFunctions.isDarkMode(context);
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -86,6 +88,16 @@ class HomeScreen extends StatelessWidget {
                   ),
                   const SizedBox(
                     height: TSizes.spaceBtwSections,
+                  ),
+
+                  /// -- Headings
+                  TSectionHeading(
+                    text: 'Popular Products',
+                    textColor: darkMode ? TColors.white : TColors.black,
+                    onPressed: () {},
+                  ),
+                  const SizedBox(
+                    height: TSizes.spaceBtwItems,
                   ),
 
                   /// -- Popular Products
