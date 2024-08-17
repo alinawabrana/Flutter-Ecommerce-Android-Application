@@ -1,14 +1,15 @@
 import 'package:e_commerce_app/common/widgets/appbar/appbar.dart';
 import 'package:e_commerce_app/common/widgets/custom_shapes/containers/primary_header_container.dart';
-import 'package:e_commerce_app/common/widgets/images/t_circular_image.dart';
 import 'package:e_commerce_app/common/widgets/texts/section_heading.dart';
+import 'package:e_commerce_app/features/personalization/screens/profile/profile.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
-import 'package:e_commerce_app/utils/constants/image_strings.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../../common/widgets/list_tiles/settings_menu_tile.dart';
+import '../../../../common/widgets/list_tiles/user_profile_tile.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -29,22 +30,8 @@ class SettingsScreen extends StatelessWidget {
                             .headlineMedium!
                             .apply(color: TColors.white)),
                   ),
-                  ListTile(
-                    leading: const TCircularImage(
-                        image: TImages.user, width: 50, height: 50, padding: 0),
-                    title: Text('Ali Nawab Rana',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headlineSmall!
-                            .apply(color: TColors.white)),
-                    subtitle: Text('support@alinawabrana.com',
-                        style: Theme.of(context)
-                            .textTheme
-                            .bodyMedium!
-                            .apply(color: TColors.white)),
-                    trailing: IconButton(
-                        onPressed: () {},
-                        icon: const Icon(Iconsax.edit, color: TColors.white)),
+                  TUserProfileTile(
+                    onPressed: () => Get.to(() => const ProfileScreen()),
                   ),
                   const SizedBox(height: TSizes.spaceBtwSections),
                 ],
