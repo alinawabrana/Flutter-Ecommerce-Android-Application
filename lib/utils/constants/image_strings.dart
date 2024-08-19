@@ -189,6 +189,14 @@ class TImages {
   static const String productImage77 =
       "assets/images/products/slipper-product.png";
 
+  // -- Product Reviews
+  static const String userProfileImage1 =
+      "assets/images/reviews/review_profile_image_1.jpg";
+  static const String userProfileImage2 =
+      "assets/images/reviews/review_profile_image_2.jpeg";
+  static const String userProfileImage3 =
+      "assets/images/reviews/review_profile_image_3.jpeg";
+
   // -- Animations
   static const String productsIllustration =
       "assets/images/animations/sammy-line-workout.gif";
