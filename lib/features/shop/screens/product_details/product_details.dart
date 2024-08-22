@@ -19,16 +19,16 @@ class ProductDetails extends StatelessWidget {
   Widget build(BuildContext context) {
     final darkMode = THelperFunctions.isDarkMode(context);
     return Scaffold(
-      bottomNavigationBar: TBottomAddToCart(),
+      bottomNavigationBar: const TBottomAddToCart(),
       body: SingleChildScrollView(
         child: Column(
           children: [
             /// 1 - Product Image Slider
-            TProductImageSlider(),
+            const TProductImageSlider(),
 
             /// 2 - Product details
             Padding(
-              padding: EdgeInsets.only(
+              padding: const EdgeInsets.only(
                   right: TSizes.defaultSpace,
                   left: TSizes.defaultSpace,
                   bottom: TSizes.defaultSpace),
@@ -36,13 +36,13 @@ class ProductDetails extends StatelessWidget {
                 children: [
                   /// - Rating & Share Button
 
-                  TRatingAndShare(),
+                  const TRatingAndShare(),
 
                   /// - Price, Title, Stock & Brand
-                  TProductMetaData(),
+                  const TProductMetaData(),
 
                   /// -- Attributes
-                  TProductAttributes(),
+                  const TProductAttributes(),
                   const SizedBox(
                     height: TSizes.spaceBtwSections,
                   ),
@@ -51,28 +51,28 @@ class ProductDetails extends StatelessWidget {
                   SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                          onPressed: () {}, child: Text('Chcekout'))),
+                          onPressed: () {}, child: const Text('Chcekout'))),
                   const SizedBox(
                     height: TSizes.spaceBtwSections,
                   ),
 
                   /// -- Description
-                  TSectionHeading(
+                  const TSectionHeading(
                     text: 'Description',
                     showActionButton: false,
                   ),
                   const SizedBox(
                     height: TSizes.spaceBtwItems,
                   ),
-                  ReadMoreText(
+                  const ReadMoreText(
                     'This is a Product description for Blue Nike Sleeve less vest. There are more things that can be added but I am',
                     trimLines: 2,
                     trimMode: TrimMode.Line,
                     trimCollapsedText: 'Show more',
                     trimExpandedText: 'Less',
-                    moreStyle: const TextStyle(
+                    moreStyle: TextStyle(
                         fontSize: 14, fontWeight: FontWeight.w800),
-                    lessStyle: const TextStyle(
+                    lessStyle: TextStyle(
                         fontSize: 14, fontWeight: FontWeight.w800),
                   ),
 
@@ -84,14 +84,14 @@ class ProductDetails extends StatelessWidget {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      TSectionHeading(
+                      const TSectionHeading(
                         text: 'Reviews(199)',
                         showActionButton: false,
                       ),
                       IconButton(
                           onPressed: () =>
                               Get.to(() => const ProductReviewsScreen()),
-                          icon: Icon(Iconsax.arrow_right_3))
+                          icon: const Icon(Iconsax.arrow_right_3))
                     ],
                   ),
                   const SizedBox(

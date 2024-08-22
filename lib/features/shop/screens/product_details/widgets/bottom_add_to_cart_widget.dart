@@ -12,7 +12,7 @@ class TBottomAddToCart extends StatelessWidget {
   Widget build(BuildContext context) {
     final darkMode = THelperFunctions.isDarkMode(context);
     return Container(
-      padding: EdgeInsets.symmetric(
+      padding: const EdgeInsets.symmetric(
           horizontal: TSizes.defaultSpace, vertical: TSizes.defaultSpace / 2),
       decoration: BoxDecoration(
         color: darkMode ? TColors.darkerGrey : TColors.light,
@@ -26,7 +26,7 @@ class TBottomAddToCart extends StatelessWidget {
         children: [
           Row(
             children: [
-              TCircularIcon(
+              const TCircularIcon(
                 icon: Iconsax.minus,
                 backgroundColor: TColors.darkerGrey,
                 width: 40,
@@ -43,7 +43,7 @@ class TBottomAddToCart extends StatelessWidget {
               const SizedBox(
                 width: TSizes.spaceBtwItems,
               ),
-              TCircularIcon(
+              const TCircularIcon(
                 icon: Iconsax.add,
                 backgroundColor: TColors.black,
                 width: 40,
@@ -54,12 +54,12 @@ class TBottomAddToCart extends StatelessWidget {
           ),
           ElevatedButton(
             onPressed: () {},
-            child: const Text('Add to Cart'),
             style: ElevatedButton.styleFrom(
-              padding: EdgeInsets.all(TSizes.md),
+              padding: const EdgeInsets.all(TSizes.md),
               backgroundColor: TColors.black,
               side: const BorderSide(color: TColors.black),
             ),
+            child: const Text('Add to Cart'),
           ),
         ],
       ),

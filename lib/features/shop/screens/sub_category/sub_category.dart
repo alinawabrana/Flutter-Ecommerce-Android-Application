@@ -12,8 +12,8 @@ class SubCategoryScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TAppBar(
-        title: const Text(
+      appBar: const TAppBar(
+        title: Text(
           'Sporst Shirt',
         ),
         showBackArrow: true,

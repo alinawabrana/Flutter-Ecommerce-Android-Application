@@ -95,7 +95,7 @@ class CheckoutScreen extends StatelessWidget {
                 image: TImages.successfulPaymentIcon,
                 title: 'Payment Successful',
                 subTitle: 'Your item will be shipped soon!',
-                onPressed: () => Get.offAll(() => NavigationMenu()))),
+                onPressed: () => Get.offAll(() => const NavigationMenu()))),
             child: const Text('Checkout \$ 256.0')),
       ),
     );

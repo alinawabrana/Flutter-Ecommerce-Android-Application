@@ -13,7 +13,7 @@ class ProfileScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: TAppBar(
+      appBar: const TAppBar(
         title: Text('Profile'),
         showBackArrow: true,
       ),
@@ -21,7 +21,7 @@ class ProfileScreen extends StatelessWidget {
       /// -- Body
       body: SingleChildScrollView(
         child: Padding(
-          padding: EdgeInsets.all(TSizes.defaultSpace),
+          padding: const EdgeInsets.all(TSizes.defaultSpace),
           child: Column(
             children: [
               /// Profile Picture
@@ -29,7 +29,7 @@ class ProfileScreen extends StatelessWidget {
                 width: double.infinity,
                 child: Column(
                   children: [
-                    TCircularImage(
+                    const TCircularImage(
                       image: TImages.user,
                       width: 80,
                       height: 80,
