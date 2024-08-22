@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/features/shop/screens/all_products/all_products.dart';
 import 'package:e_commerce_app/features/shop/screens/home/widget/home_appbar.dart';
 import 'package:e_commerce_app/features/shop/screens/home/widget/home_categories.dart';
 import 'package:e_commerce_app/features/shop/screens/home/widget/promo_slider.dart';
@@ -6,6 +7,7 @@ import 'package:e_commerce_app/utils/constants/image_strings.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
 import 'package:e_commerce_app/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import '../../../../common/widgets/custom_shapes/containers/primary_header_container.dart';
 import '../../../../common/widgets/custom_shapes/containers/search_container.dart';
@@ -97,7 +99,7 @@ class HomeScreen extends StatelessWidget {
                   TSectionHeading(
                     text: 'Popular Products',
                     textColor: darkMode ? TColors.white : TColors.black,
-                    onPressed: () {},
+                    onPressed: () => Get.to(() => const AllProducts()),
                   ),
                   const SizedBox(
                     height: TSizes.spaceBtwItems,
