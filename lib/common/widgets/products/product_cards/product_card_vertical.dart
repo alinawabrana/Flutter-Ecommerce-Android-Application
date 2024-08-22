@@ -117,6 +117,7 @@ class TProductCardVertical extends StatelessWidget {
                   ),
                 ),
 
+                /// Add to Cart Button
                 Container(
                   decoration: BoxDecoration(
                     color: darkMode ? TColors.light : TColors.dark,
