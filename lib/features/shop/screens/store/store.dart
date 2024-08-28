@@ -79,7 +79,7 @@ class StoreScreen extends StatelessWidget {
                         itemCount: 4,
                         itemBuilder: (_, index) {
                           return TBrandCard(
-                            onTap: () {},
+                            onTap: () => Get.to(() => const AllBrandsScreen()),
                             showBorder: false,
                           );
                         },

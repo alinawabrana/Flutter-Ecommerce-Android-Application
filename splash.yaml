@@ -15,6 +15,7 @@ flutter_native_splash:
 
   # As you are not using any web splash therefore the web will be false
   web: false
+  android: true
 
   # IMPORTANT NOTE:
   # Now to create a splash screen you have to run following command on terminal:

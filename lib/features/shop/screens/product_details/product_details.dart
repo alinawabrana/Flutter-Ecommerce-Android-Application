@@ -51,7 +51,7 @@ class ProductDetails extends StatelessWidget {
                   SizedBox(
                       width: double.infinity,
                       child: ElevatedButton(
-                          onPressed: () {}, child: const Text('Chcekout'))),
+                          onPressed: () {}, child: const Text('Checkout'))),
                   const SizedBox(
                     height: TSizes.spaceBtwSections,
                   ),
@@ -70,10 +70,10 @@ class ProductDetails extends StatelessWidget {
                     trimMode: TrimMode.Line,
                     trimCollapsedText: 'Show more',
                     trimExpandedText: 'Less',
-                    moreStyle: TextStyle(
-                        fontSize: 14, fontWeight: FontWeight.w800),
-                    lessStyle: TextStyle(
-                        fontSize: 14, fontWeight: FontWeight.w800),
+                    moreStyle:
+                        TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
+                    lessStyle:
+                        TextStyle(fontSize: 14, fontWeight: FontWeight.w800),
                   ),
 
                   /// -- Reviews

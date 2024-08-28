@@ -23,7 +23,7 @@ dependencies:
   # This will create a screen that will appear when we open the app, containing the logo of the app.
   # For this purpose you have to write a separate code for it in this yaml file or in a separate file
   # Lets create a new file named splash.yaml and write code in it of what should appear in a splash screen
-  flutter_native_splash: ^2.3.2
+  flutter_native_splash: ^2.4.0
 
   # Icons
   iconsax: ^0.0.8     # This is the newly added Icons which we will use in our Project
@@ -38,6 +38,9 @@ dependencies:
   carousel_slider: ^4.2.1
   flutter_rating_bar: ^4.0.1
 
+  # Firebase
+  firebase_core: ^2.23.0
+
 
 #-------------------- PACKAGES ENDS: --------------------#
 
@@ -48,11 +51,8 @@ dev_dependencies:
 
   flutter_lints: ^3.0.0
 
-
-
 flutter:
   uses-material-design: true
-
 
   #-------------------- LOCAL ASSETS: --------------------#
   assets:

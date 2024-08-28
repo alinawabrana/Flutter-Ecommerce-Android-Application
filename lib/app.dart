@@ -1,8 +1,7 @@
+import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:e_commerce_app/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'features/authentication/screens/onboarding/onboarding.dart';
 
 /// ----Use this class to setup themes, initial bindings, any animation and much more
 class App extends StatelessWidget {
@@ -19,7 +18,14 @@ class App extends StatelessWidget {
       // This is automatically for light theme.
       darkTheme: TAppTheme.darkTheme,
       // This is automatically for dark theme.
-      home: const OnBoardingScreen(),
+      home: const Scaffold(
+        backgroundColor: TColors.primaryColor,
+        body: Center(
+          child: CircularProgressIndicator(
+            color: Colors.white,
+          ),
+        ),
+      ),
     );
   }
 }
