@@ -31,8 +31,7 @@ class OnBoardingController extends GetxController {
       final storage = GetStorage();
 
       if (kDebugMode) {
-        print(
-            '=================== GET STORAGE Next Button ====================');
+        print('=================== GET STORAGE ====================');
         print(storage.read('IsFirstTime'));
       }
 
