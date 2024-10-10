@@ -17,7 +17,9 @@ dependencies:
   http: ^1.1.0
   intl: ^0.18.1
   logger: ^2.0.1
+  lottie: ^2.7.0        # for animation
   url_launcher: ^6.1.12
+  connectivity_plus: ^5.0.1     # Used to check state of network
   smooth_page_indicator: ^1.1.0
 
   # This will create a screen that will appear when we open the app, containing the logo of the app.

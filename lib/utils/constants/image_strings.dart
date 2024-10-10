@@ -16,7 +16,8 @@ class TImages {
       "assets/icons/categories/icons8-bowling-64.png";
   static const String clothIcon =
       "assets/icons/categories/icons8-tailors-dummy-64.png";
-  static const String shoeIcon = "assets/icons/categories/icons8-shoes-64.png";
+  static const String shoeIcon =
+      "assets/icons/categories/icons8  -shoes-64.png";
   static const String cosmeticsIcon =
       "assets/icons/categories/icons8-cosmetics-64.png";
   static const String animalIcon =
@@ -29,6 +30,20 @@ class TImages {
       "assets/icons/categories/icons8-sparkling-diamond-64.png";
   static const String electronicsIcon =
       "assets/icons/categories/icons8-smartphone-64.png";
+
+  // -- Animations
+  static const String productsIllustration =
+      "assets/images/animations/sammy-line-workout.gif";
+  static const String productsSaleIllustration =
+      "assets/images/animations/sammy-line-sale.png";
+  static const String staticSuccessIllustration =
+      "assets/images/animations/sammy-line-success.png";
+  static const String deliveredInPlaneIllustration =
+      "assets/images/animations/sammy-line-come-back-later.png";
+  static const String deliveredEmailIllustration =
+      "assets/images/animations/sammy-line-man-receives-a-mail.png";
+  static const String verifyIllustration =
+      "assets/images/animations/sammy-line-travel-backpack-with-passport-and-air-ticket.gif";
 
   // -- OnBoarding Images
   static const String onBoardingImage1 =
@@ -196,20 +211,6 @@ class TImages {
       "assets/images/reviews/review_profile_image_2.jpeg";
   static const String userProfileImage3 =
       "assets/images/reviews/review_profile_image_3.jpeg";
-
-  // -- Animations
-  static const String productsIllustration =
-      "assets/images/animations/sammy-line-workout.gif";
-  static const String productsSaleIllustration =
-      "assets/images/animations/sammy-line-sale.png";
-  static const String staticSuccessIllustration =
-      "assets/images/animations/sammy-line-success.png";
-  static const String deliveredInPlaneIllustration =
-      "assets/images/animations/sammy-line-come-back-later.png";
-  static const String deliveredEmailIllustration =
-      "assets/images/animations/sammy-line-man-receives-a-mail.png";
-  static const String verifyIllustration =
-      "assets/images/animations/sammy-line-travel-backpack-with-passport-and-air-ticket.gif";
 
   //Banners
   static const String promoBanner1 =
