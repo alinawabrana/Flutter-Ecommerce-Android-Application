@@ -5,6 +5,7 @@ import 'package:e_commerce_app/navigation_menu.dart';
 import 'package:e_commerce_app/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:e_commerce_app/utils/exceptions/format_exceptions.dart';
 import 'package:e_commerce_app/utils/exceptions/platform_exceptions.dart';
+import 'package:e_commerce_app/utils/popups/loaders.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/services.dart';
@@ -61,6 +62,23 @@ class AuthenticationRepository extends GetxController {
 /* ----------------------------------- Email & Password sign-in -------------------------------------*/
 
   /// [EmailAuthentication] - SignIn
+  Future<UserCredential> signInWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      return await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformExceptions(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong. Please try again';
+    }
+  }
 
   /// [EmailAuthentication] - REGISTER
 
@@ -115,6 +133,7 @@ class AuthenticationRepository extends GetxController {
   Future<void> logout() async {
     try {
       await FirebaseAuth.instance.signOut();
+      TLoaders.successSnackBar(title: 'Logged out Successfully');
       Get.offAll(() => const LoginScreen());
     } on FirebaseAuthException catch (e) {
       throw TFirebaseAuthException(e.code).message;

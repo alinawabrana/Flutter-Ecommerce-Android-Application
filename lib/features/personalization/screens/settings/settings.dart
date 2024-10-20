@@ -1,6 +1,7 @@
 import 'package:e_commerce_app/common/widgets/appbar/appbar.dart';
 import 'package:e_commerce_app/common/widgets/custom_shapes/containers/primary_header_container.dart';
 import 'package:e_commerce_app/common/widgets/texts/section_heading.dart';
+import 'package:e_commerce_app/data/repositories/authentication/authentication_repository.dart';
 import 'package:e_commerce_app/features/personalization/screens/address/address.dart';
 import 'package:e_commerce_app/features/personalization/screens/profile/profile.dart';
 import 'package:e_commerce_app/features/shop/screens/cart/cart.dart';
@@ -13,6 +14,7 @@ import 'package:iconsax/iconsax.dart';
 
 import '../../../../common/widgets/list_tiles/settings_menu_tile.dart';
 import '../../../../common/widgets/list_tiles/user_profile_tile.dart';
+import '../../../../utils/constants/text_strings.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -130,6 +132,17 @@ class SettingsScreen extends StatelessWidget {
                 ],
               ),
             ),
+            const SizedBox(
+              height: TSizes.spaceBtwSections,
+            ),
+
+            /// Buttons
+            SizedBox(
+                width: double.infinity,
+                child: OutlinedButton(
+                    onPressed: () => AuthenticationRepository.instance.logout(),
+                    child: const Text('Logout'))),
+            const SizedBox(height: TSizes.spaceBtwItems),
           ],
         ),
       ),
