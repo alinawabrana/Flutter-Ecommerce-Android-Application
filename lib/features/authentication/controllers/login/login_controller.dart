@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/data/repositories/authentication/authentication_repository.dart';
 import 'package:e_commerce_app/features/authentication/controllers/network_manager/network_manager.dart';
+import 'package:e_commerce_app/features/personalization/controllers/user_controller.dart';
 import 'package:e_commerce_app/utils/constants/image_strings.dart';
 import 'package:e_commerce_app/utils/popups/full_screen_loader.dart';
 import 'package:e_commerce_app/utils/popups/loaders.dart';
@@ -17,6 +18,7 @@ class LoginController extends GetxController {
   GlobalKey<FormState> loginFormKey = GlobalKey<FormState>();
 
   final localStorage = GetStorage();
+  final userController = Get.put(UserController());
 
   @override
   void onInit() {
@@ -56,7 +58,37 @@ class LoginController extends GetxController {
       AuthenticationRepository.instance.screenRedirect();
     } catch (e) {
       TFullScreenLoader.stopLoading();
-      TLoaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
+      TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
+    }
+  }
+
+  void googleSignIn() async {
+    try {
+      /// Display a full screen Loader
+      TFullScreenLoader.openLoadingDialog(
+          'We are processing your information', TImages.docerAnimation);
+
+      /// Check internet Connectivity
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
+
+      /// Get the user credentials
+      final userCredentials =
+          await AuthenticationRepository.instance.signInWithGoogle();
+
+      /// Save user Record
+      await userController.saveUserRecord(userCredentials);
+
+      TFullScreenLoader.stopLoading();
+
+      // Redirect to the RedirectScreen
+      AuthenticationRepository.instance.screenRedirect();
+    } catch (e) {
+      TFullScreenLoader.stopLoading();
+      TLoaders.errorSnackBar(title: 'Oh Snap!', message: e.toString());
     }
   }
 }

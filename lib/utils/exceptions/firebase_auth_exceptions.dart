@@ -43,6 +43,16 @@ class TFirebaseAuthException implements Exception {
         return 'This credential is already associated with a different user account';
       case 'user-mismatch':
         return 'The supplied credentials do not correspond to the previously signed in user.';
+      case 'invalid-recipient-email':
+        return 'The recipient email address is invalid. Please try again with valid email address.';
+      case 'invalid-credential':
+        return 'The supplied credential is malformed or has expired.';
+      case 'missing-iframe-start':
+        return 'The email template is missing iframe start tag.';
+      case 'missing-iframe-end':
+        return 'The email template is missing iframe end tag.';
+      case 'missing-iframe-src':
+        return 'The email template is missing iframe src attribute.';
       default:
         return 'An unexpected FirebaseAuth error has occurred. Please try again';
     }
