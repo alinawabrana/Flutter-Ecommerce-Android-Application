@@ -77,4 +77,18 @@ class UserRepository extends GetxController {
       throw "Something went wrong. Please try again.";
     }
   }
+
+  Future<void> removeUserRecord(String userId) async {
+    try {
+      await _db.collection('Users').doc(userId).delete();
+    } on FirebaseException catch (e) {
+      throw FirebaseException(plugin: e.code);
+    } on FormatException catch (_) {
+      throw const FormatException();
+    } on PlatformException catch (e) {
+      throw PlatformException(code: e.code);
+    } catch (e) {
+      throw "Something went wrong. Please try again.";
+    }
+  }
 }

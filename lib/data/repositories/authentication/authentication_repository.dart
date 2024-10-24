@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/data/repositories/user/user_repository.dart';
 import 'package:e_commerce_app/features/authentication/screens/login/login.dart';
 import 'package:e_commerce_app/features/authentication/screens/onboarding/onboarding.dart';
 import 'package:e_commerce_app/features/authentication/screens/signup/verify_email.dart';
@@ -102,6 +103,24 @@ class AuthenticationRepository extends GetxController {
   }
 
   /// [ReAuthentication] - ReAuthenticate User
+  Future<void> reAuthenticateWithEmailAndPassword(
+      String email, String password) async {
+    try {
+      final credentials =
+          EmailAuthProvider.credential(email: email, password: password);
+      await _auth.currentUser?.reauthenticateWithCredential(credentials);
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformExceptions(e.code).message;
+    } catch (e) {
+      throw "Something went wrong. Please try again";
+    }
+  }
 
   /// [EmailVerification] - MAIL VERIFICATION
   Future<void> sendEmailVerification() async {
@@ -193,4 +212,22 @@ class AuthenticationRepository extends GetxController {
   }
 
   /// [DELETE USER] - Remove user Auth and FireStore Account
+  Future<void> deleteAccount() async {
+    try {
+      await UserRepository.instance.removeUserRecord(_auth.currentUser!.uid);
+      await FirebaseAuth.instance.currentUser?.delete();
+      TLoaders.successSnackBar(title: 'Account Deleted Successfully');
+      Get.offAll(() => const LoginScreen());
+    } on FirebaseAuthException catch (e) {
+      throw TFirebaseAuthException(e.code).message;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformExceptions(e.code).message;
+    } catch (e) {
+      throw "Something went wrong. Please try again.";
+    }
+  }
 }

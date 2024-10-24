@@ -1,8 +1,14 @@
+import 'package:e_commerce_app/data/repositories/authentication/authentication_repository.dart';
 import 'package:e_commerce_app/data/repositories/user/user_repository.dart';
+import 'package:e_commerce_app/features/authentication/controllers/network_manager/network_manager.dart';
+import 'package:e_commerce_app/features/authentication/screens/login/login.dart';
 import 'package:e_commerce_app/features/personalization/models/user_model.dart';
+import 'package:e_commerce_app/features/personalization/screens/reAuthLogin/re_auth_login_form.dart';
+import 'package:e_commerce_app/utils/constants/image_strings.dart';
+import 'package:e_commerce_app/utils/constants/sizes.dart';
+import 'package:e_commerce_app/utils/popups/full_screen_loader.dart';
 import 'package:e_commerce_app/utils/popups/loaders.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,15 +19,18 @@ class UserController extends GetxController {
 
   // Creating Rx<UserModel> type of variable for a single read operation throughout the application
   // Also the below user is used everywhere where we need the data of current user like Name, Email etc
-  final user = UserModel
-      .empty()
-      .obs;
+  final user = UserModel.empty().obs;
 
   // controllers for new First and Last name
   final firstName = TextEditingController();
   final lastName = TextEditingController();
   GlobalKey<FormState> changeNameFormKey = GlobalKey<FormState>();
 
+  // Re Authenticate controllers
+  final verifyEmail = TextEditingController();
+  final verifyPassword = TextEditingController();
+  GlobalKey<FormState> reAuthLoginFormKey = GlobalKey<FormState>();
+  final showPassword = false.obs;
 
   @override
   void onInit() {
@@ -34,9 +43,9 @@ class UserController extends GetxController {
     try {
       if (userCredentials != null) {
         final nameParts =
-        UserModel.nameParts(userCredentials.user!.displayName ?? '');
+            UserModel.nameParts(userCredentials.user!.displayName ?? '');
         final username =
-        UserModel.generateUsername(userCredentials.user!.displayName ?? '');
+            UserModel.generateUsername(userCredentials.user!.displayName ?? '');
 
         final newUser = UserModel(
             id: userCredentials.user!.uid ?? '',
@@ -56,7 +65,7 @@ class UserController extends GetxController {
       TLoaders.warningSnackBar(
           title: 'Data not Saved!',
           message:
-          'Something went wrong while saving your information. Please re-save your information.');
+              'Something went wrong while saving your information. Please re-save your information.');
     }
   }
 
@@ -69,18 +78,105 @@ class UserController extends GetxController {
       TLoaders.warningSnackBar(
           title: 'Data not Fetched!',
           message:
-          'Something went wrong while fetching the user data from the FireStore. Please try again');
+              'Something went wrong while fetching the user data from the FireStore. Please try again');
     }
   }
 
-  Future<void> updateNameField() async {
-    try {
-      final name = {'FirstName': firstName, 'LastName': lastName};
+  void deleteAccountWarningPopup() {
+    Get.defaultDialog(
+      contentPadding: const EdgeInsets.all(TSizes.defaultSpace),
+      title: 'Delete Account',
+      middleText:
+          'Are you sure you want to delete the account permanently?. This action is irreversible and all of your data will be removed permanently.',
+      cancel: OutlinedButton(
+        onPressed: () => Navigator.of(Get.overlayContext!).pop(),
+        child: const Text('Cancel'),
+      ),
+      confirm: ElevatedButton(
+        onPressed: () => deleteUserAccount(),
+        style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.red,
+            side: const BorderSide(color: Colors.red)),
+        child: const Padding(
+          padding: EdgeInsets.symmetric(horizontal: TSizes.lg),
+          child: Text('Delete'),
+        ),
+      ),
+    );
+  }
 
-      await userRepository.updateSingleField(name);
+  Future<void> deleteUserAccount() async {
+    try {
+      // Start the Loader
+      TFullScreenLoader.openLoadingDialog(
+          'Deleting your account...', TImages.docerAnimation);
+
+      // Checking the internet connection
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
+      final auth = AuthenticationRepository.instance;
+      final provider = FirebaseAuth.instance.currentUser?.providerData
+          .map((e) => e.providerId)
+          .first;
+      if (provider!.isNotEmpty) {
+        if (provider == 'google.com') {
+          await auth.signInWithGoogle();
+          await auth.deleteAccount();
+          TFullScreenLoader.stopLoading();
+          Get.offAll(() => const LoginScreen());
+        } else if (provider == 'password') {
+          TFullScreenLoader.stopLoading();
+          Get.to(() => const ReAuthLoginForm());
+        }
+      }
     } catch (e) {
-      TLoaders.warningSnackBar(title: 'Data not Updated',
-          message: 'Something went wrong while updating the first and the last name. Please try again.');
+      TFullScreenLoader.stopLoading();
+      TLoaders.errorSnackBar(
+          title: 'Error deleting Account.',
+          message:
+              'An error has occurred while deleting the account. Please try again.');
+    }
+  }
+
+  Future<void> reAuthenticateEmailAndPassword() async {
+    try {
+      // Open full screen Loader
+      TFullScreenLoader.openLoadingDialog(
+          'Re-Authenticating & Deleting your account...',
+          TImages.docerAnimation);
+
+      // Check Internet Connection
+      final isConnected = await NetworkManager.instance.isConnected();
+      if (!isConnected) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
+
+      // Validating te Re Authenticate Form
+      if (!reAuthLoginFormKey.currentState!.validate()) {
+        TFullScreenLoader.stopLoading();
+        return;
+      }
+
+      final auth = AuthenticationRepository.instance;
+      // Calling Re-Authenticate of Authentication Repository
+      await auth.reAuthenticateWithEmailAndPassword(
+          verifyEmail.text.trim(), verifyPassword.text.trim());
+
+      // Calling deleteAccount of Auth Repo
+      await auth.deleteAccount();
+
+      TFullScreenLoader.stopLoading();
+      Get.offAll(const LoginScreen());
+    } catch (e) {
+      TFullScreenLoader.stopLoading();
+      TLoaders.errorSnackBar(
+          title: 'Error deleting Account.',
+          message:
+              'An error has occurred while deleting the account. Please try again.');
     }
   }
 }
