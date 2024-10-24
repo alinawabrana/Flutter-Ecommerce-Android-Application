@@ -1,9 +1,11 @@
 import 'package:e_commerce_app/common/widgets/appbar/appbar.dart';
 import 'package:e_commerce_app/common/widgets/images/t_circular_image.dart';
 import 'package:e_commerce_app/common/widgets/texts/section_heading.dart';
+import 'package:e_commerce_app/features/personalization/controllers/user_controller.dart';
 import 'package:e_commerce_app/features/personalization/screens/profile/widgets/profile_menu.dart';
 import 'package:e_commerce_app/utils/constants/image_strings.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -12,6 +14,7 @@ class ProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
     return Scaffold(
       appBar: const TAppBar(
         title: Text('Profile'),
@@ -60,12 +63,12 @@ class ProfileScreen extends StatelessWidget {
 
               TProfileMenu(
                 title: 'Name',
-                value: 'Coding with T',
+                value: controller.user.value.fullName,
                 onPressed: () {},
               ),
               TProfileMenu(
                 title: 'Username',
-                value: 'coding_with_t',
+                value: controller.user.value.username,
                 onPressed: () {},
               ),
 
@@ -88,18 +91,18 @@ class ProfileScreen extends StatelessWidget {
 
               TProfileMenu(
                 title: 'User ID',
-                value: '340770',
+                value: FirebaseAuth.instance.currentUser!.uid,
                 onPressed: () {},
                 icon: Iconsax.copy,
               ),
               TProfileMenu(
                 title: 'E-mail',
-                value: 'alinawabrana@gmail.com',
+                value: controller.user.value.email,
                 onPressed: () {},
               ),
               TProfileMenu(
                 title: 'Phone Number',
-                value: '+92-317-1234567',
+                value: controller.user.value.phoneNumber,
                 onPressed: () {},
               ),
               TProfileMenu(

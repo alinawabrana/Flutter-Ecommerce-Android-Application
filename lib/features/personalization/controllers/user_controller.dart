@@ -9,6 +9,17 @@ class UserController extends GetxController {
 
   final userRepository = Get.put(UserRepository());
 
+  // Creating Rx<UserModel> type of variable for a single read operation throughout the application
+  final user = UserModel.empty().obs;
+
+  // Also the above user is used everywhere where we need the data of current user like Name, Email etc
+
+  @override
+  void onInit() {
+    super.onInit();
+    fetchUserRecord();
+  }
+
   /// Function to saveUserData to Fire Store
   Future<void> saveUserRecord(UserCredential? userCredentials) async {
     try {
@@ -37,6 +48,19 @@ class UserController extends GetxController {
           title: 'Data not Saved!',
           message:
               'Something went wrong while saving your information. Please re-save your information.');
+    }
+  }
+
+  Future<void> fetchUserRecord() async {
+    try {
+      final user = await userRepository.fetchUserDetails();
+      this.user(user);
+    } catch (e) {
+      user(UserModel.empty());
+      TLoaders.warningSnackBar(
+          title: 'Data not Fetched!',
+          message:
+              'Something went wrong while fetching the user data from the FireStore. Please try again');
     }
   }
 }
