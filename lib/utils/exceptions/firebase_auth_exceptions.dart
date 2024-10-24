@@ -46,7 +46,7 @@ class TFirebaseAuthException implements Exception {
       case 'invalid-recipient-email':
         return 'The recipient email address is invalid. Please try again with valid email address.';
       case 'invalid-credential':
-        return 'The supplied credential is malformed or has expired.';
+        return 'The supplied credential are invalid.';
       case 'missing-iframe-start':
         return 'The email template is missing iframe start tag.';
       case 'missing-iframe-end':

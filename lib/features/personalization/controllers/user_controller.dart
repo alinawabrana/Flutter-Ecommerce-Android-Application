@@ -22,9 +22,10 @@ class UserController extends GetxController {
             id: userCredentials.user!.uid ?? '',
             email: userCredentials.user!.email ?? '',
             username: username,
-            firstName: nameParts[0],
-            lastName:
-                nameParts.length > 1 ? nameParts.sublist(1).join(' ') : '',
+            firstName: nameParts.length > 1
+                ? nameParts.sublist(1, nameParts.length - 1).join(' ')
+                : nameParts[0],
+            lastName: nameParts[nameParts.length],
             phoneNumber: userCredentials.user!.phoneNumber ?? '',
             profilePicture: userCredentials.user!.photoURL ?? '');
 

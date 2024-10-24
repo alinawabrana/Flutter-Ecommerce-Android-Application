@@ -1,7 +1,8 @@
-import 'package:e_commerce_app/features/authentication/screens/password_configuration/reset_password.dart';
+import 'package:e_commerce_app/features/authentication/controllers/forget_password/forget_password_controller.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
 import 'package:e_commerce_app/utils/constants/text_strings.dart';
 import 'package:e_commerce_app/utils/helpers/helper_functions.dart';
+import 'package:e_commerce_app/utils/validators/validation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
@@ -11,6 +12,7 @@ class ForgetPassword extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = Get.put(ForgetPasswordController());
     return Scaffold(
       appBar: AppBar(),
       body: Padding(
@@ -35,10 +37,15 @@ class ForgetPassword extends StatelessWidget {
             ),
 
             /// Text Fields
-            TextFormField(
-              decoration: const InputDecoration(
-                  labelText: TTexts.email,
-                  prefixIcon: Icon(Iconsax.direct_right)),
+            Form(
+              key: controller.forgetPasswordFormKey,
+              child: TextFormField(
+                controller: controller.email,
+                validator: (value) => TValidator.validateEmail(value),
+                decoration: const InputDecoration(
+                    labelText: TTexts.email,
+                    prefixIcon: Icon(Iconsax.direct_right)),
+              ),
             ),
             const SizedBox(
               height: TSizes.spaceBtwSections,
@@ -50,7 +57,7 @@ class ForgetPassword extends StatelessWidget {
               child: ElevatedButton(
                   //Now if we don't want to get to the previous screen and we want to jump back to the screen before this then we will use Get.off.
                   // This will not save the navigation of this screen but will have the navigation to its previous screen
-                  onPressed: () => Get.off(() => const ResetPassword()),
+                  onPressed: () => controller.sendPasswordResetEmail(),
                   child: const Text(TTexts.submit)),
             ),
           ],

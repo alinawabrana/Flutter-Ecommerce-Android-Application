@@ -39,7 +39,7 @@ class UserModel {
 
     String camelCaseUsername = '$firstName$lastName';
     String usernameWithPrefix = 'cwt_$camelCaseUsername';
-    return usernameWithPrefix;
+    return camelCaseUsername;
   }
 
   /// Static function to create an empty user model
@@ -56,7 +56,7 @@ class UserModel {
     return {
       'FirstName': firstName,
       'LastName': lastName,
-      'UserName': username,
+      'Username': username,
       'Email': email,
       'PhoneNumber': phoneNumber,
       'ProfilePicture': profilePicture,
