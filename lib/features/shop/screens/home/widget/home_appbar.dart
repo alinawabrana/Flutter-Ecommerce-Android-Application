@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/features/personalization/controllers/user_controller.dart';
+import 'package:e_commerce_app/utils/effects/shimmer_effect.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -27,15 +28,19 @@ class THomeAppBar extends StatelessWidget {
                 .labelMedium!
                 .apply(color: TColors.grey),
           ),
-          Obx(
-            () => Text(
+          Obx(() {
+            if (controller.profileLoading.value) {
+              // Display a shimmer loader while user profile is being loaded
+              return const TShimmerEffect(width: 80, height: 15);
+            }
+            return Text(
               controller.user.value.fullName,
               style: Theme.of(context)
                   .textTheme
                   .headlineSmall!
                   .apply(color: TColors.white),
-            ),
-          ),
+            );
+          }),
         ],
       ),
       actions: [

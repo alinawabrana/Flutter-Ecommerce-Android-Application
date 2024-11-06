@@ -1,3 +1,5 @@
+import 'package:e_commerce_app/features/personalization/controllers/user_controller.dart';
+import 'package:e_commerce_app/utils/effects/shimmer_effect.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -15,15 +17,25 @@ class TUserProfileTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final controller = UserController.instance;
+    final networkImage = controller.user.value.profilePicture;
+    final image = networkImage.isNotEmpty ? networkImage : TImages.user;
     return ListTile(
-      leading: const TCircularImage(
-          image: TImages.user, width: 50, height: 50, padding: 0),
-      title: Text('Ali Nawab Rana',
-          style: Theme.of(context)
-              .textTheme
-              .headlineSmall!
-              .apply(color: TColors.white)),
-      subtitle: Text('support@alinawabrana.com',
+      leading: TCircularImage(
+        image: image,
+        width: 50,
+        height: 50,
+        padding: 0,
+        isNetworkImage: networkImage.isNotEmpty,
+      ),
+      title: controller.profileLoading.value
+          ? const TShimmerEffect(width: 80, height: 15)
+          : Text(controller.user.value.fullName,
+              style: Theme.of(context)
+                  .textTheme
+                  .headlineSmall!
+                  .apply(color: TColors.white)),
+      subtitle: Text(controller.user.value.email,
           style: Theme.of(context)
               .textTheme
               .bodyMedium!

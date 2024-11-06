@@ -11,6 +11,7 @@ import 'package:e_commerce_app/utils/popups/loaders.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 
 class UserController extends GetxController {
   static UserController get instance => Get.find();
@@ -24,6 +25,7 @@ class UserController extends GetxController {
   // controllers for new First and Last name
   final firstName = TextEditingController();
   final lastName = TextEditingController();
+  final profileLoading = false.obs;
   GlobalKey<FormState> changeNameFormKey = GlobalKey<FormState>();
 
   // Re Authenticate controllers
@@ -31,6 +33,8 @@ class UserController extends GetxController {
   final verifyPassword = TextEditingController();
   GlobalKey<FormState> reAuthLoginFormKey = GlobalKey<FormState>();
   final showPassword = false.obs;
+
+  final imageUploading = false.obs;
 
   @override
   void onInit() {
@@ -41,25 +45,29 @@ class UserController extends GetxController {
   /// Function to saveUserData to Fire Store
   Future<void> saveUserRecord(UserCredential? userCredentials) async {
     try {
-      if (userCredentials != null) {
-        final nameParts =
-            UserModel.nameParts(userCredentials.user!.displayName ?? '');
-        final username =
-            UserModel.generateUsername(userCredentials.user!.displayName ?? '');
+      // First update Rx user and then check if user data is already stored. If not then store new data.
 
-        final newUser = UserModel(
-            id: userCredentials.user!.uid ?? '',
-            email: userCredentials.user!.email ?? '',
-            username: username,
-            firstName: nameParts.length > 1
-                ? nameParts.sublist(1, nameParts.length - 1).join(' ')
-                : nameParts[0],
-            lastName: nameParts[nameParts.length],
-            phoneNumber: userCredentials.user!.phoneNumber ?? '',
-            profilePicture: userCredentials.user!.photoURL ?? '');
+      if (user.value.id.isEmpty) {
+        if (userCredentials != null) {
+          final nameParts =
+              UserModel.nameParts(userCredentials.user!.displayName ?? '');
+          final username = UserModel.generateUsername(
+              userCredentials.user!.displayName ?? '');
 
-        // Save user data
-        await userRepository.saveUserRecord(newUser);
+          final newUser = UserModel(
+              id: userCredentials.user!.uid ?? '',
+              email: userCredentials.user!.email ?? '',
+              username: username,
+              firstName: nameParts.length > 1
+                  ? nameParts.sublist(1, nameParts.length - 1).join(' ')
+                  : nameParts[0],
+              lastName: nameParts[nameParts.length],
+              phoneNumber: userCredentials.user!.phoneNumber ?? '',
+              profilePicture: userCredentials.user!.photoURL ?? '');
+
+          // Save user data
+          await userRepository.saveUserRecord(newUser);
+        }
       }
     } catch (e) {
       TLoaders.warningSnackBar(
@@ -71,8 +79,10 @@ class UserController extends GetxController {
 
   Future<void> fetchUserRecord() async {
     try {
+      profileLoading.value = true;
       final user = await userRepository.fetchUserDetails();
       this.user(user);
+      profileLoading.value = false;
     } catch (e) {
       user(UserModel.empty());
       TLoaders.warningSnackBar(
@@ -177,6 +187,37 @@ class UserController extends GetxController {
           title: 'Error deleting Account.',
           message:
               'An error has occurred while deleting the account. Please try again.');
+    }
+  }
+
+  uploadUserProfilePicture() async {
+    try {
+      final image = await ImagePicker().pickImage(
+          source: ImageSource.gallery,
+          imageQuality: 70,
+          maxHeight: 512,
+          maxWidth: 512);
+      if (image != null) {
+        imageUploading.value = true;
+        final imageURL = await UserRepository.instance
+            .uploadImage('Users/Images/Profile', image);
+
+        // update the user data
+        Map<String, dynamic> json = {'ProfilePicture': imageURL};
+        await UserRepository.instance.updateSingleField(json);
+
+        // updating the Rx user
+        user.value.profilePicture = imageURL;
+
+        TLoaders.successSnackBar(
+            title: 'Congratulations!!!',
+            message: 'Your Profile Image has been updated.');
+      }
+    } catch (e) {
+      TLoaders.errorSnackBar(
+          title: 'Oh Snap!!!', message: 'Something went wrong. $e');
+    } finally {
+      imageUploading.value = false;
     }
   }
 }
