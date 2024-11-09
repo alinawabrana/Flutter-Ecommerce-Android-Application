@@ -1,10 +1,10 @@
 import 'package:e_commerce_app/features/personalization/controllers/user_controller.dart';
-import 'package:e_commerce_app/utils/effects/shimmer_effect.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../common/widgets/appbar/appbar.dart';
 import '../../../../../common/widgets/products/cart/cart_menu_icon.dart';
+import '../../../../../common/widgets/shimmer/shimmer_effect.dart';
 import '../../../../../utils/constants/colors.dart';
 import '../../../../../utils/constants/text_strings.dart';
 

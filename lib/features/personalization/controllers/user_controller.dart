@@ -3,7 +3,6 @@ import 'package:e_commerce_app/data/repositories/user/user_repository.dart';
 import 'package:e_commerce_app/features/authentication/controllers/network_manager/network_manager.dart';
 import 'package:e_commerce_app/features/authentication/screens/login/login.dart';
 import 'package:e_commerce_app/features/personalization/models/user_model.dart';
-import 'package:e_commerce_app/features/personalization/screens/reAuthLogin/re_auth_login_form.dart';
 import 'package:e_commerce_app/utils/constants/image_strings.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
 import 'package:e_commerce_app/utils/popups/full_screen_loader.dart';
@@ -12,6 +11,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../screens/profile/widgets/reAuthLogin/re_auth_login_form.dart';
 
 class UserController extends GetxController {
   static UserController get instance => Get.find();
@@ -46,7 +47,9 @@ class UserController extends GetxController {
   Future<void> saveUserRecord(UserCredential? userCredentials) async {
     try {
       // First update Rx user and then check if user data is already stored. If not then store new data.
+      await fetchUserRecord();
 
+      //  If there is no record
       if (user.value.id.isEmpty) {
         if (userCredentials != null) {
           final nameParts =

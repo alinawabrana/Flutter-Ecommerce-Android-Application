@@ -2,15 +2,16 @@ import 'package:e_commerce_app/common/widgets/appbar/appbar.dart';
 import 'package:e_commerce_app/common/widgets/images/t_circular_image.dart';
 import 'package:e_commerce_app/common/widgets/texts/section_heading.dart';
 import 'package:e_commerce_app/features/personalization/controllers/user_controller.dart';
-import 'package:e_commerce_app/features/personalization/screens/change_name/change_name.dart';
+import 'package:e_commerce_app/features/personalization/screens/profile/widgets/change_name/change_name.dart';
 import 'package:e_commerce_app/features/personalization/screens/profile/widgets/profile_menu.dart';
 import 'package:e_commerce_app/utils/constants/image_strings.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
-import 'package:e_commerce_app/utils/effects/shimmer_effect.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
+
+import '../../../../common/widgets/shimmer/shimmer_effect.dart';
 
 class ProfileScreen extends StatelessWidget {
   const ProfileScreen({super.key});

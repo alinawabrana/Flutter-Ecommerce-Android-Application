@@ -1,10 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:e_commerce_app/utils/effects/shimmer_effect.dart';
 import 'package:e_commerce_app/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/sizes.dart';
+import '../shimmer/shimmer_effect.dart';
 
 class TCircularImage extends StatelessWidget {
   const TCircularImage({

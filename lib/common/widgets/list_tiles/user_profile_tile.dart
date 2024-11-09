@@ -1,11 +1,11 @@
 import 'package:e_commerce_app/features/personalization/controllers/user_controller.dart';
-import 'package:e_commerce_app/utils/effects/shimmer_effect.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../utils/constants/colors.dart';
 import '../../../utils/constants/image_strings.dart';
 import '../images/t_circular_image.dart';
+import '../shimmer/shimmer_effect.dart';
 
 class TUserProfileTile extends StatelessWidget {
   const TUserProfileTile({
