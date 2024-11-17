@@ -1,4 +1,5 @@
 import 'package:e_commerce_app/bindings/general_bindings.dart';
+import 'package:e_commerce_app/routes/app_routes.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:e_commerce_app/utils/theme/theme.dart';
 import 'package:flutter/material.dart';
@@ -20,6 +21,8 @@ class App extends StatelessWidget {
       darkTheme: TAppTheme.darkTheme,
       // This is automatically for dark theme.
       initialBinding: GeneralBindings(),
+
+      getPages: AppRoutes.pages,
       home: const Scaffold(
         backgroundColor: TColors.primaryColor,
         body: Center(
