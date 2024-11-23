@@ -4,6 +4,7 @@ import 'package:e_commerce_app/common/widgets/texts/section_heading.dart';
 import 'package:e_commerce_app/data/repositories/authentication/authentication_repository.dart';
 import 'package:e_commerce_app/features/personalization/screens/address/address.dart';
 import 'package:e_commerce_app/features/personalization/screens/profile/profile.dart';
+import 'package:e_commerce_app/features/personalization/screens/settings/widgets/load_data.dart';
 import 'package:e_commerce_app/features/shop/screens/cart/cart.dart';
 import 'package:e_commerce_app/features/shop/screens/order/order.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
@@ -14,7 +15,6 @@ import 'package:iconsax/iconsax.dart';
 
 import '../../../../common/widgets/list_tiles/settings_menu_tile.dart';
 import '../../../../common/widgets/list_tiles/user_profile_tile.dart';
-import '../../../../utils/constants/text_strings.dart';
 
 class SettingsScreen extends StatelessWidget {
   const SettingsScreen({super.key});
@@ -109,7 +109,7 @@ class SettingsScreen extends StatelessWidget {
                     title: 'Load Data',
                     subTitle: 'Upload Data to your Cloud Firebase',
                     icon: Iconsax.document_upload,
-                    onTap: () {},
+                    onTap: () => Get.to(() => const LoadData()),
                   ),
                   TSettingsMenuTile(
                     title: 'Geolocation',

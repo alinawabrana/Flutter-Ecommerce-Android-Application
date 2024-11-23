@@ -28,11 +28,11 @@ dependencies:
   # This will create a screen that will appear when we open the app, containing the logo of the app.
   # For this purpose you have to write a separate code for it in this yaml file or in a separate file
   # Lets create a new file named splash.yaml and write code in it of what should appear in a splash screen
-  flutter_native_splash: ^2.4.0
+  flutter_native_splash: ^2.3.2
 
   # Icons
   iconsax: ^0.0.8     # This is the newly added Icons which we will use in our Project
-  cupertino_icons: ^1.0.6
+  cupertino_icons: ^1.0.2
 
   # State Management
   get: ^4.6.5         # This is the  State Management that we will use in our Project
@@ -45,10 +45,11 @@ dependencies:
 
   # Firebase
   google_sign_in: ^6.2.1
-  firebase_core: 2.24.1
+  firebase_core: ^2.24.1
   firebase_auth: ^4.14.0
   cloud_firestore: ^4.13.1
   firebase_storage: ^11.5.4
+  firebase_app_check: ^0.2.1+7
 
 
 #-------------------- PACKAGES ENDS: --------------------#
@@ -58,7 +59,7 @@ dev_dependencies:
     sdk: flutter
 
 
-  flutter_lints: ^3.0.0
+  flutter_lints: ^2.0.0
 
 flutter:
   uses-material-design: true
