@@ -6,6 +6,7 @@ import 'package:e_commerce_app/features/authentication/screens/signup/verify_ema
 import 'package:e_commerce_app/features/personalization/screens/address/address.dart';
 import 'package:e_commerce_app/features/personalization/screens/profile/profile.dart';
 import 'package:e_commerce_app/features/personalization/screens/settings/settings.dart';
+import 'package:e_commerce_app/features/shop/models/product_model.dart';
 import 'package:e_commerce_app/features/shop/screens/brands/brand_products.dart';
 import 'package:e_commerce_app/features/shop/screens/cart/cart.dart';
 import 'package:e_commerce_app/features/shop/screens/checkout/checkout.dart';
@@ -38,7 +39,11 @@ class AppRoutes {
     GetPage(name: TRoutes.forgetPassword, page: () => const ForgetPassword()),
     GetPage(name: TRoutes.onBoarding, page: () => const OnBoardingScreen()),
     GetPage(name: TRoutes.subCategories, page: () => const SubCategoryScreen()),
-    GetPage(name: TRoutes.productDetail, page: () => const ProductDetails()),
+    GetPage(
+        name: TRoutes.productDetail,
+        page: () => ProductDetails(
+              product: ProductModel.empty(),
+            )),
     GetPage(name: TRoutes.brand, page: () => const BrandProducts()),
   ];
 }

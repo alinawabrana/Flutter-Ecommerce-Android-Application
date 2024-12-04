@@ -3,6 +3,7 @@ import 'package:e_commerce_app/common/widgets/list_tiles/settings_menu_tile.dart
 import 'package:e_commerce_app/common/widgets/texts/section_heading.dart';
 import 'package:e_commerce_app/features/shop/controllers/banner_controller.dart';
 import 'package:e_commerce_app/features/shop/controllers/category_controller.dart';
+import 'package:e_commerce_app/features/shop/controllers/product_controller.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
 import 'package:flutter/material.dart';
@@ -15,6 +16,7 @@ class LoadData extends StatelessWidget {
   Widget build(BuildContext context) {
     final bannerController = BannerController.instance;
     final categoryController = CategoryController.instance;
+    final productController = ProductController.instance;
     return Scaffold(
       appBar: TAppBar(
         showBackArrow: true,
@@ -48,7 +50,7 @@ class LoadData extends StatelessWidget {
                 ),
                 onTap: () => categoryController.permissionForUploading(),
               ),
-              TSettingsMenuTile(
+              const TSettingsMenuTile(
                 icon: Iconsax.shop,
                 title: 'Upload Brands',
                 subTitle: '',
@@ -61,10 +63,11 @@ class LoadData extends StatelessWidget {
                 icon: Iconsax.shopping_cart,
                 title: 'Upload Products',
                 subTitle: '',
-                trailing: Icon(
+                trailing: const Icon(
                   Iconsax.arrow_up_1,
                   color: TColors.primaryColor,
                 ),
+                onTap: () => productController.permissionForUploading(),
               ),
               TSettingsMenuTile(
                 icon: Iconsax.image,
@@ -77,7 +80,7 @@ class LoadData extends StatelessWidget {
                 onTap: () => bannerController.permissionForUploading(),
               ),
               const SizedBox(height: TSizes.spaceBtwItems),
-              TSectionHeading(
+              const TSectionHeading(
                 text: 'Relationships',
                 showActionButton: false,
               ),
@@ -97,7 +100,7 @@ class LoadData extends StatelessWidget {
                   color: TColors.primaryColor,
                 ),
               ),
-              TSettingsMenuTile(
+              const TSettingsMenuTile(
                 icon: Iconsax.link,
                 title: 'Upload Products & Categories Relational Data',
                 subTitle: '',

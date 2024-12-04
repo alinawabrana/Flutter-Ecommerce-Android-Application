@@ -44,7 +44,7 @@ class CategoryController extends GetxController {
       featuredCategories.assignAll(categories
           .where((category) =>
               category.isFeatured == true && category.parentId.isEmpty)
-          .take(5)
+          .take(8)
           .toList());
     } catch (e) {
       TLoaders.errorSnackBar(title: 'Oh Snap', message: e.toString());
@@ -81,7 +81,7 @@ class CategoryController extends GetxController {
     try {
       // Start Loader
       TFullScreenLoader.openLoadingDialog(
-          'Uploading Dummy Categories Data', TImages.docerAnimation);
+          'Uploading Dummy Categories Data', TImages.cloudAnimation);
 
       // check network
       final isConnected = await NetworkManager.instance.isConnected();

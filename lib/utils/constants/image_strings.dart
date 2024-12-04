@@ -11,13 +11,25 @@ class TImages {
   static const String google = "assets/logos/google-icon.png";
   static const String facebook = "assets/logos/facebook-icon.png";
 
+  // -- Brand Logos
+  static const String nikeLogo = 'assets/icons/brands/nike.png';
+  static const String adidasLogo = "assets/icons/brands/adidas-logo.png";
+  static const String appleLogo = "assets/icons/brands/apple-logo.png";
+  static const String jordanLogo = "assets/icons/brands/jordan-logo.png";
+  static const String pumaLogo = "assets/icons/brands/puma-logo.png";
+  static const String zaraLogo = "assets/icons/brands/zara-logo.png";
+  static const String kenwoodLogo = "assets/icons/brands/kenwood-logo.png";
+  static const String hermanMillerLogo =
+      "assets/icons/brands/herman-miller-logo.png";
+  static const String ikeaLogo = "assets/icons/brands/ikea_logo.png";
+  static const String acerlogo = "assets/icons/brands/acer_logo.png";
+
   // -- Category Icons
   static const String sportIcon =
       "assets/icons/categories/icons8-bowling-64.png";
   static const String clothIcon =
       "assets/icons/categories/icons8-tailors-dummy-64.png";
-  static const String shoeIcon =
-      "assets/icons/categories/icons8  -shoes-64.png";
+  static const String shoeIcon = "assets/icons/categories/icons8-shoes-64.png";
   static const String cosmeticsIcon =
       "assets/icons/categories/icons8-cosmetics-64.png";
   static const String animalIcon =
@@ -46,6 +58,8 @@ class TImages {
       "assets/images/animations/sammy-line-travel-backpack-with-passport-and-air-ticket.gif";
   static const String docerAnimation =
       "assets/images/animations/141594-animation-of-docer.json";
+  static const String cloudAnimation =
+      'assets/images/animations/cloud-uploading-animation.json';
 
   // -- OnBoarding Images
   static const String onBoardingImage1 =

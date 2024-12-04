@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/features/shop/models/product_model.dart';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 
@@ -36,7 +37,9 @@ class TSortableProducts extends StatelessWidget {
 
         TGridLayout(
             itemCount: 4,
-            itemBuilder: (_, index) => const TProductCardVertical()),
+            itemBuilder: (_, index) => TProductCardVertical(
+                  product: ProductModel.empty(),
+                )),
       ],
     );
   }

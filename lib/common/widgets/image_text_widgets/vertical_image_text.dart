@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../../../utils/constants/colors.dart';
@@ -34,17 +35,22 @@ class TVerticalImageText extends StatelessWidget {
               height: 56,
               padding: const EdgeInsets.all(TSizes.sm),
               decoration: BoxDecoration(
-                // ?? means that if the left side has a value then use that value if it is null then use the riight side value
+                // ?? means that if the left side has a value then use that value if it is null then use the right side value
                 color: backgroundColor ??
                     (darkMode ? TColors.black : TColors.white),
                 borderRadius: BorderRadius.circular(100),
               ),
               child: Center(
-                child: Image(
-                  image: AssetImage(image),
+                child: CachedNetworkImage(
+                  imageUrl: image,
                   fit: BoxFit.cover,
                   color: darkMode ? TColors.light : TColors.dark,
                 ),
+                // child: Image(
+                //   image: AssetImage(image),
+                //   fit: BoxFit.cover,
+                //   color: darkMode ? TColors.light : TColors.dark,
+                // ),
               ),
             ),
 

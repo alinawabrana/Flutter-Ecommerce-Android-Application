@@ -8,7 +8,8 @@ class CategoryModel {
       required this.isFeatured,
       this.parentId = ""});
 
-  String id, image, name, parentId;
+  final String id;
+  String image, name, parentId;
   bool isFeatured;
 
   static CategoryModel empty() =>
@@ -27,7 +28,7 @@ class CategoryModel {
   /// Map Json oriented document from Firebase to CategoryModel
   factory CategoryModel.fromSnapshot(
       DocumentSnapshot<Map<String, dynamic>> document) {
-    if (document.data() != null) {
+    if (document.data()!.isNotEmpty) {
       final data = document.data()!;
 
       // Map JSON Record to the model
