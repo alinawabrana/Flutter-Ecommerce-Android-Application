@@ -5,11 +5,11 @@ import 'package:e_commerce_app/utils/popups/loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../../../data/dummy/dummy_data.dart';
-import '../../../utils/constants/image_strings.dart';
-import '../../../utils/constants/sizes.dart';
-import '../../../utils/popups/full_screen_loader.dart';
-import '../../authentication/controllers/network_manager/network_manager.dart';
+import '../../../../data/dummy/dummy_data.dart';
+import '../../../../utils/constants/image_strings.dart';
+import '../../../../utils/constants/sizes.dart';
+import '../../../../utils/popups/full_screen_loader.dart';
+import '../../../authentication/controllers/network_manager/network_manager.dart';
 
 class ProductController extends GetxController {
   static ProductController get instance => Get.find();
