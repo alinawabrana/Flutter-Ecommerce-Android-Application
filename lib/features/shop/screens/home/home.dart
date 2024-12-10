@@ -95,7 +95,12 @@ class HomeScreen extends StatelessWidget {
                   TSectionHeading(
                     text: 'Popular Products',
                     textColor: darkMode ? TColors.white : TColors.black,
-                    onPressed: () => Get.to(() => const AllProducts()),
+                    onPressed: () => Get.to(
+                      () => AllProducts(
+                        title: 'Popular Products',
+                        futureMethod: controller.fetchAllFeaturedProducts(),
+                      ),
+                    ),
                   ),
                   const SizedBox(
                     height: TSizes.spaceBtwItems,

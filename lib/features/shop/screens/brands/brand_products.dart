@@ -24,7 +24,9 @@ class BrandProducts extends StatelessWidget {
                 height: TSizes.spaceBtwItems,
               ),
 
-              TSortableProducts(),
+              TSortableProducts(
+                products: [],
+              ),
             ],
           ),
         ),
