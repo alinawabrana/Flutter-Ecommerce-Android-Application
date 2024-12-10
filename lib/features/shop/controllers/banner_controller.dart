@@ -73,7 +73,7 @@ class BannerController extends GetxController {
     try {
       // Opening full screen dialog
       TFullScreenLoader.openLoadingDialog(
-          'Uploading All the Dummy Banners Data', TImages.docerAnimation);
+          'Uploading All the Dummy Banners Data', TImages.cloudAnimation);
 
       // Checking the Network Connection
       final isConnected = await NetworkManager.instance.isConnected();

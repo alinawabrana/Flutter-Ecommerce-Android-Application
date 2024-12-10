@@ -2,6 +2,7 @@ import 'package:e_commerce_app/common/widgets/appbar/appbar.dart';
 import 'package:e_commerce_app/common/widgets/list_tiles/settings_menu_tile.dart';
 import 'package:e_commerce_app/common/widgets/texts/section_heading.dart';
 import 'package:e_commerce_app/features/shop/controllers/banner_controller.dart';
+import 'package:e_commerce_app/features/shop/controllers/brand_controller.dart';
 import 'package:e_commerce_app/features/shop/controllers/category_controller.dart';
 import 'package:e_commerce_app/features/shop/controllers/product/product_controller.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
@@ -17,6 +18,7 @@ class LoadData extends StatelessWidget {
     final bannerController = BannerController.instance;
     final categoryController = CategoryController.instance;
     final productController = ProductController.instance;
+    final brandController = BrandController.instance;
     return Scaffold(
       appBar: TAppBar(
         showBackArrow: true,
@@ -50,14 +52,15 @@ class LoadData extends StatelessWidget {
                 ),
                 onTap: () => categoryController.permissionForUploading(),
               ),
-              const TSettingsMenuTile(
+              TSettingsMenuTile(
                 icon: Iconsax.shop,
                 title: 'Upload Brands',
                 subTitle: '',
-                trailing: Icon(
+                trailing: const Icon(
                   Iconsax.arrow_up_1,
                   color: TColors.primaryColor,
                 ),
+                onTap: () => brandController.permissionForUploading(),
               ),
               TSettingsMenuTile(
                 icon: Iconsax.shopping_cart,

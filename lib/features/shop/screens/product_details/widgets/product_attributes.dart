@@ -74,7 +74,7 @@ class TProductAttributes extends StatelessWidget {
 
                               /// Sale Price
                               TProductPriceText(
-                                price: '\$${controller.getVariationPrice()}',
+                                price: controller.getVariationPrice(),
                               ),
                             ],
                           ),

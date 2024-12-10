@@ -136,6 +136,69 @@ class TDummyData {
         isFeatured: false),
   ];
 
+  static final List<BrandModel> brands = [
+    BrandModel(
+        id: '1',
+        name: 'Nike',
+        image: TImages.nikeLogo,
+        productsCount: 256,
+        isFeatured: true),
+    BrandModel(
+        id: '10',
+        name: 'Acer',
+        image: TImages.acerlogo,
+        productsCount: 36,
+        isFeatured: false),
+    BrandModel(
+        id: '2',
+        name: 'Adidas',
+        image: TImages.adidasLogo,
+        productsCount: 95,
+        isFeatured: true),
+    BrandModel(
+        id: '3',
+        name: 'Jordan',
+        image: TImages.jordanLogo,
+        productsCount: 36,
+        isFeatured: true),
+    BrandModel(
+        id: '4',
+        name: 'Puma',
+        image: TImages.pumaLogo,
+        productsCount: 65,
+        isFeatured: true),
+    BrandModel(
+        id: '5',
+        name: 'Apple',
+        image: TImages.appleLogo,
+        productsCount: 16,
+        isFeatured: false),
+    BrandModel(
+        id: '6',
+        name: 'Zara',
+        image: TImages.zaraLogo,
+        productsCount: 36,
+        isFeatured: false),
+    BrandModel(
+        id: '7',
+        name: 'Samsung',
+        image: TImages.hermanMillerLogo,
+        productsCount: 36,
+        isFeatured: false),
+    BrandModel(
+        id: '8',
+        name: 'Kenwood',
+        image: TImages.kenwoodLogo,
+        productsCount: 36,
+        isFeatured: false),
+    BrandModel(
+        id: '9',
+        name: 'IKEA',
+        image: TImages.ikeaLogo,
+        productsCount: 36,
+        isFeatured: false),
+  ];
+
   static final List<ProductModel> products = [
     ProductModel(
       id: '001',

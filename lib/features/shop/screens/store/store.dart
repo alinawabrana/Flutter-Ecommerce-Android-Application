@@ -3,8 +3,10 @@ import 'package:e_commerce_app/common/widgets/custom_shapes/containers/search_co
 import 'package:e_commerce_app/common/widgets/layouts/grid_layout.dart';
 import 'package:e_commerce_app/common/widgets/products/cart/cart_menu_icon.dart';
 import 'package:e_commerce_app/common/widgets/texts/section_heading.dart';
+import 'package:e_commerce_app/features/shop/controllers/brand_controller.dart';
 import 'package:e_commerce_app/features/shop/controllers/category_controller.dart';
 import 'package:e_commerce_app/features/shop/screens/brands/all_brands.dart';
+import 'package:e_commerce_app/features/shop/screens/brands/brand_products.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
 import 'package:e_commerce_app/utils/constants/sizes.dart';
 import 'package:e_commerce_app/utils/helpers/helper_functions.dart';
@@ -22,6 +24,7 @@ class StoreScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final darkMode = THelperFunctions.isDarkMode(context);
     final categories = CategoryController.instance.featuredCategories;
+    final brands = Get.put(BrandController());
     return DefaultTabController(
       length: categories.length,
       child: Scaffold(
@@ -70,21 +73,28 @@ class StoreScreen extends StatelessWidget {
                       /// -- Featured Brands
                       TSectionHeading(
                         text: 'Featured Brand',
-                        onPressed: () => Get.to(() => const AllBrandsScreen()),
+                        onPressed: () => Get.to(() => AllBrandsScreen(
+                              brands: brands.allBrands,
+                            )),
                       ),
                       const SizedBox(
                         height: TSizes.spaceBtwItems / 1.5,
                       ),
 
-                      TGridLayout(
-                        mainAxisExtent: 80,
-                        itemCount: 4,
-                        itemBuilder: (_, index) {
-                          return TBrandCard(
-                            onTap: () => Get.to(() => const AllBrandsScreen()),
-                            showBorder: false,
-                          );
-                        },
+                      Obx(
+                        () => TGridLayout(
+                          mainAxisExtent: 80,
+                          itemCount: brands.featuredBrands.length,
+                          itemBuilder: (_, index) {
+                            return TBrandCard(
+                              onTap: () => Get.to(() => BrandProducts(
+                                    brand: brands.featuredBrands[index],
+                                  )),
+                              showBorder: false,
+                              brand: brands.featuredBrands[index],
+                            );
+                          },
+                        ),
                       ),
                     ],
                   ),
