@@ -1,6 +1,8 @@
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:e_commerce_app/features/shop/models/brand_category_model.dart';
+import 'package:e_commerce_app/features/shop/models/product_category_model.dart';
 import 'package:e_commerce_app/features/shop/models/product_model.dart';
 import 'package:e_commerce_app/utils/constants/enums.dart';
 import 'package:e_commerce_app/utils/exceptions/firebase_exceptions.dart';
@@ -8,6 +10,7 @@ import 'package:e_commerce_app/utils/exceptions/platform_exceptions.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import '../../../utils/exceptions/format_exceptions.dart';
 import '../../services/firebase_storage/firebase_storage_service.dart';
 
 class ProductRepository extends GetxController {
@@ -61,6 +64,71 @@ class ProductRepository extends GetxController {
       throw TPlatformExceptions(e.code).message;
     } catch (e) {
       throw 'Something went wrong. Please try again.';
+    }
+  }
+
+  Future<List<ProductModel>> getProductsForBrands(
+      {required String brandId, int limit = -1}) async {
+    try {
+      final querySnapshot = limit == -1
+          ? await _db
+              .collection('Products')
+              .where('Brand.Id', isEqualTo: brandId)
+              .get()
+          : await _db
+              .collection('Products')
+              .where('Brand.Id', isEqualTo: brandId)
+              .limit(limit)
+              .get();
+      final products = querySnapshot.docs
+          .map((query) => ProductModel.fromSnapshot(query))
+          .toList();
+      return products;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformExceptions(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong while fetching Banners.';
+    }
+  }
+
+  Future<List<ProductModel>> getProductsForCategory(
+      {required String categoryId, int limit = -1}) async {
+    try {
+      final querySnapshot = limit == -1
+          ? await _db
+              .collection('ProductCategory')
+              .where('CategoryId', isEqualTo: categoryId)
+              .get()
+          : await _db
+              .collection('ProductCategory')
+              .where('CategoryId', isEqualTo: categoryId)
+              .limit(limit)
+              .get();
+
+      final productId =
+          querySnapshot.docs.map((doc) => doc['ProductId'] as String).toList();
+
+      final productsQuery = await _db
+          .collection('Products')
+          .where(FieldPath.documentId, whereIn: productId)
+          .get();
+
+      final products = productsQuery.docs
+          .map((query) => ProductModel.fromSnapshot(query))
+          .toList();
+      return products;
+    } on FirebaseException catch (e) {
+      throw TFirebaseException(e.code).message;
+    } on FormatException catch (_) {
+      throw const TFormatException();
+    } on PlatformException catch (e) {
+      throw TPlatformExceptions(e.code).message;
+    } catch (e) {
+      throw 'Something went wrong while fetching Banners.';
     }
   }
 
@@ -118,6 +186,42 @@ class ProductRepository extends GetxController {
         }
         // Store Category in FireStore
         await _db.collection('Products').doc(product.id).set(product.toJson());
+      }
+    } on FirebaseException catch (e) {
+      throw e.message!;
+    } on SocketException catch (e) {
+      throw e.message;
+    } on PlatformException catch (e) {
+      throw e.message!;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  Future<void> uploadDummyRelationalCategoryData(
+      List<ProductCategoryModel> productsCategory) async {
+    try {
+      // Store Category in FireStore
+      for (var productCategory in productsCategory) {
+        await _db.collection('ProductCategory').add(productCategory.toJson());
+      }
+    } on FirebaseException catch (e) {
+      throw e.message!;
+    } on SocketException catch (e) {
+      throw e.message;
+    } on PlatformException catch (e) {
+      throw e.message!;
+    } catch (e) {
+      throw e.toString();
+    }
+  }
+
+  Future<void> uploadDummyRelationalBrandData(
+      List<BrandCategoryModel> brandsCategory) async {
+    try {
+      // Store Category in FireStore
+      for (var brandCategory in brandsCategory) {
+        await _db.collection('BrandCategory').add(brandCategory.toJson());
       }
     } on FirebaseException catch (e) {
       throw e.message!;

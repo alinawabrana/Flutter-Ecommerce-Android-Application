@@ -1,7 +1,9 @@
 import 'package:e_commerce_app/features/shop/models/banner_model.dart';
+import 'package:e_commerce_app/features/shop/models/brand_category_model.dart';
 import 'package:e_commerce_app/features/shop/models/brand_model.dart';
 import 'package:e_commerce_app/features/shop/models/category_model.dart';
 import 'package:e_commerce_app/features/shop/models/product_attribute_model.dart';
+import 'package:e_commerce_app/features/shop/models/product_category_model.dart';
 import 'package:e_commerce_app/features/shop/models/product_model.dart';
 import 'package:e_commerce_app/features/shop/models/product_variation_model.dart';
 import 'package:e_commerce_app/routes/routes.dart';
@@ -197,6 +199,45 @@ class TDummyData {
         image: TImages.ikeaLogo,
         productsCount: 36,
         isFeatured: false),
+  ];
+
+  static final List<BrandCategoryModel> brandCategory = [
+    BrandCategoryModel(brandId: '1', categoryId: '1'),
+    BrandCategoryModel(brandId: '2', categoryId: '1'),
+    BrandCategoryModel(brandId: '3', categoryId: '1'),
+    BrandCategoryModel(brandId: '4', categoryId: '1'),
+    BrandCategoryModel(brandId: '5', categoryId: '2'),
+    BrandCategoryModel(brandId: '7', categoryId: '2'),
+    BrandCategoryModel(brandId: '6', categoryId: '3'),
+    BrandCategoryModel(brandId: '9', categoryId: '4'),
+    BrandCategoryModel(brandId: '8', categoryId: '5'),
+    BrandCategoryModel(brandId: '1', categoryId: '6'),
+    BrandCategoryModel(brandId: '2', categoryId: '6'),
+    BrandCategoryModel(brandId: '3', categoryId: '6'),
+    BrandCategoryModel(brandId: '4', categoryId: '6'),
+    BrandCategoryModel(brandId: '10', categoryId: '6'),
+    BrandCategoryModel(brandId: '8', categoryId: '7'),
+    BrandCategoryModel(brandId: '9', categoryId: '7'),
+    BrandCategoryModel(brandId: '9', categoryId: '17'),
+  ];
+
+  static final List<ProductCategoryModel> productCategory = [
+    ProductCategoryModel(categoryId: '1', productId: '001'),
+    ProductCategoryModel(categoryId: '1', productId: '005'),
+    ProductCategoryModel(categoryId: '1', productId: '009'),
+    ProductCategoryModel(categoryId: '2', productId: '006'),
+    ProductCategoryModel(categoryId: '2', productId: '007'),
+    ProductCategoryModel(categoryId: '3', productId: '002'),
+    ProductCategoryModel(categoryId: '3', productId: '003'),
+    ProductCategoryModel(categoryId: '3', productId: '004'),
+    ProductCategoryModel(categoryId: '4', productId: '007'),
+    ProductCategoryModel(categoryId: '5', productId: '001'),
+    ProductCategoryModel(categoryId: '6', productId: '001'),
+    ProductCategoryModel(categoryId: '6', productId: '005'),
+    ProductCategoryModel(categoryId: '6', productId: '009'),
+    ProductCategoryModel(categoryId: '7', productId: '002'),
+    ProductCategoryModel(categoryId: '17', productId: '003'),
+    ProductCategoryModel(categoryId: '17', productId: '004'),
   ];
 
   static final List<ProductModel> products = [

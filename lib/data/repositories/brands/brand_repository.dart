@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce_app/features/shop/models/brand_model.dart';
-import 'package:e_commerce_app/features/shop/models/product_model.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
@@ -32,22 +31,35 @@ class BrandRepository extends GetxController {
     }
   }
 
-  Future<List<ProductModel>> getProductsForBrands(
-      {required String brandId, int limit = -1}) async {
+  Future<List<BrandModel>> getBrandsForCategory(
+      {required String categoryId, int limit = -1}) async {
     try {
       final querySnapshot = limit == -1
           ? await _db
-              .collection('Products')
-              .where('Brand.Id', isEqualTo: brandId)
+              .collection('BrandCategory')
+              .where('CategoryId', isEqualTo: categoryId)
               .get()
           : await _db
-              .collection('Products')
-              .where('Brand.Id', isEqualTo: brandId)
+              .collection('BrandCategory')
+              .where('CategoryId', isEqualTo: categoryId)
               .limit(limit)
               .get();
-      final brands = querySnapshot.docs
-          .map((query) => ProductModel.fromSnapshot(query))
-          .toList();
+
+      // Extract all the brands Id of the categories that are fetched from BrandCategory collection
+      List<String> brandId =
+          querySnapshot.docs.map((doc) => doc['BrandId'] as String).toList();
+
+      //Use the above BrandIds and fetch the Products related to that
+
+      final brandsQuery = await _db
+          .collection('Brands')
+          .where(FieldPath.documentId, whereIn: brandId)
+          .limit(2)
+          .get();
+
+      final brands =
+          brandsQuery.docs.map((e) => BrandModel.fromSnapshot(e)).toList();
+
       return brands;
     } on FirebaseException catch (e) {
       throw TFirebaseException(e.code).message;

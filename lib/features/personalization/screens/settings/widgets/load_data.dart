@@ -94,23 +94,27 @@ class LoadData extends StatelessWidget {
               const SizedBox(
                 height: TSizes.spaceBtwItems,
               ),
-              const TSettingsMenuTile(
+              TSettingsMenuTile(
                 icon: Iconsax.link,
                 title: 'Upload Brands & Categories Relational Data',
                 subTitle: '',
-                trailing: Icon(
+                trailing: const Icon(
                   Iconsax.arrow_up_1,
                   color: TColors.primaryColor,
                 ),
+                onTap: () => brandController
+                    .permissionForUploadingBrandsRelationalData(),
               ),
-              const TSettingsMenuTile(
+              TSettingsMenuTile(
                 icon: Iconsax.link,
                 title: 'Upload Products & Categories Relational Data',
                 subTitle: '',
-                trailing: Icon(
+                trailing: const Icon(
                   Iconsax.arrow_up_1,
                   color: TColors.primaryColor,
                 ),
+                onTap: () =>
+                    categoryController.permissionForUploadingRelationalData(),
               ),
             ],
           ),

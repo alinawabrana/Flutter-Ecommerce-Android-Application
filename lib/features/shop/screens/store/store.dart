@@ -117,6 +117,7 @@ class StoreScreen extends StatelessWidget {
               children: categories
                   .map((category) => TCategoryTab(
                         category: category,
+                brands: brands.allBrands,
                       ))
                   .toList()),
         ),
