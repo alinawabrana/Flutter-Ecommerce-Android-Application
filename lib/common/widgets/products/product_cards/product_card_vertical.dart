@@ -12,10 +12,10 @@ import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 import '../../../styles/shadows.dart';
-import '../../icons/t_circular_icon.dart';
 import '../../texts/product_price_text.dart';
 import '../../texts/product_title_text.dart';
 import '../../texts/t_brand_title_text_with_verified_icon.dart';
+import '../favourite_icon/favourite_icon.dart';
 
 class TProductCardVertical extends StatelessWidget {
   const TProductCardVertical({super.key, required this.product});
@@ -78,12 +78,11 @@ class TProductCardVertical extends StatelessWidget {
                   ),
 
                   /// -- Favourite Icon Button
-                  const Positioned(
+                  Positioned(
                     top: 0,
                     right: 0,
-                    child: TCircularIcon(
-                      icon: Iconsax.heart5,
-                      color: Colors.red,
+                    child: TFavoriteIcon(
+                      productId: product.id,
                     ),
                   ),
                 ],

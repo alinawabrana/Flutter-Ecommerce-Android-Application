@@ -6,6 +6,7 @@ import 'package:e_commerce_app/navigation_menu.dart';
 import 'package:e_commerce_app/utils/exceptions/firebase_auth_exceptions.dart';
 import 'package:e_commerce_app/utils/exceptions/format_exceptions.dart';
 import 'package:e_commerce_app/utils/exceptions/platform_exceptions.dart';
+import 'package:e_commerce_app/utils/local_storage/storage_utility.dart';
 import 'package:e_commerce_app/utils/popups/loaders.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/foundation.dart';
@@ -37,6 +38,8 @@ class AuthenticationRepository extends GetxController {
     final currentUser = _auth.currentUser;
     if (currentUser != null) {
       if (currentUser.emailVerified) {
+        // Initialize the user specific Storage
+        await TLocalStorage.init(currentUser.uid);
         Get.offAll(() => const NavigationMenu());
       } else {
         Get.offAll(

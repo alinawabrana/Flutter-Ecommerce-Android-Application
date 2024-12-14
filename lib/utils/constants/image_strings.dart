@@ -60,6 +60,8 @@ class TImages {
       "assets/images/animations/141594-animation-of-docer.json";
   static const String cloudAnimation =
       'assets/images/animations/cloud-uploading-animation.json';
+  static const String pencilAnimation =
+      'assets/images/animations/140429-pencil-drawing.json';
 
   // -- OnBoarding Images
   static const String onBoardingImage1 =
