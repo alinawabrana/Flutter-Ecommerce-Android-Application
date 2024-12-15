@@ -21,6 +21,8 @@ import 'package:e_commerce_app/features/shop/screens/wishlist/wishlist.dart';
 import 'package:e_commerce_app/routes/routes.dart';
 import 'package:get/get.dart';
 
+import '../features/shop/models/category_model.dart';
+
 class AppRoutes {
   static final pages = [
     GetPage(name: TRoutes.home, page: () => const HomeScreen()),
@@ -39,7 +41,9 @@ class AppRoutes {
     GetPage(name: TRoutes.signIn, page: () => const LoginScreen()),
     GetPage(name: TRoutes.forgetPassword, page: () => const ForgetPassword()),
     GetPage(name: TRoutes.onBoarding, page: () => const OnBoardingScreen()),
-    GetPage(name: TRoutes.subCategories, page: () => const SubCategoryScreen()),
+    GetPage(
+        name: TRoutes.subCategories,
+        page: () => SubCategoryScreen(category: CategoryModel.empty())),
     GetPage(
         name: TRoutes.productDetail,
         page: () => ProductDetails(

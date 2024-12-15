@@ -147,7 +147,7 @@ class ProductRepository extends GetxController {
     } on PlatformException catch (e) {
       throw TPlatformExceptions(e.code).message;
     } catch (e) {
-      throw 'Something went wrong while fetching Banners.';
+      throw 'Something went wrong while fetching Products.';
     }
   }
 
