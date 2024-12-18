@@ -9,8 +9,8 @@ import 'package:e_commerce_app/utils/constants/sizes.dart';
 import 'package:e_commerce_app/utils/helpers/helper_functions.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:iconsax/iconsax.dart';
 
+import '../../../../features/shop/screens/product_details/widgets/product_cart_add_to_cart_button.dart';
 import '../../../styles/shadows.dart';
 import '../../texts/product_price_text.dart';
 import '../../texts/product_title_text.dart';
@@ -147,24 +147,9 @@ class TProductCardVertical extends StatelessWidget {
                 ),
 
                 /// Add to Cart Button
-                Container(
-                  decoration: BoxDecoration(
-                    color: darkMode ? TColors.light : TColors.dark,
-                    borderRadius: const BorderRadius.only(
-                      topLeft: Radius.circular(TSizes.cardRadiusMd),
-                      bottomRight: Radius.circular(TSizes.productImageRadius),
-                    ),
-                  ),
-                  child: SizedBox(
-                    width: TSizes.iconLg * 1.2,
-                    height: TSizes.iconLg * 1.2,
-                    child: Center(
-                      child: Icon(
-                        Iconsax.add,
-                        color: darkMode ? TColors.black : TColors.white,
-                      ),
-                    ),
-                  ),
+                ProductCartAddToCartButton(
+                  darkMode: darkMode,
+                  product: product,
                 ),
               ],
             )

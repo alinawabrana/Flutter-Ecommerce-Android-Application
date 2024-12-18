@@ -33,10 +33,8 @@ class StoreScreen extends StatelessWidget {
             "Store",
             style: Theme.of(context).textTheme.headlineMedium,
           ),
-          actions: [
-            TCartCounterIcon(
-              onPressed: () {},
-            ),
+          actions: const [
+            TCartCounterIcon(),
           ],
         ),
 
@@ -117,7 +115,7 @@ class StoreScreen extends StatelessWidget {
               children: categories
                   .map((category) => TCategoryTab(
                         category: category,
-                brands: brands.allBrands,
+                        brands: brands.allBrands,
                       ))
                   .toList()),
         ),
