@@ -21,7 +21,7 @@ class ProductCartAddToCartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final controller = CartController.instance;
+    final controller = Get.put(CartController());
     return InkWell(
       onTap: () {
         // If the product have variation then shows the product Details for variation selection.
