@@ -1,6 +1,6 @@
-# e_commerce_app
+# ECommerce App
 
-A new Flutter project.
+This app is a well combinationa of almost all those features of flutter which are required in a professional application.
 
 ## Getting Started
 
