@@ -78,4 +78,31 @@ class TLoaders {
           color: TColors.white,
         ));
   }
+
+  static loadingSnackBar({required String title, String message = ''}) {
+    Get.snackbar(
+      title,
+      message,
+      isDismissible: false,
+      // Prevent user from dismissing
+      shouldIconPulse: true,
+      colorText: TColors.white,
+      backgroundColor: TColors.darkerGrey.withOpacity(0.9),
+      snackPosition: SnackPosition.BOTTOM,
+      duration: const Duration(seconds: 30),
+      // Long duration (manually close)
+      margin: const EdgeInsets.all(10),
+      icon: const SizedBox(
+        width: 24,
+        height: 24,
+        child: CircularProgressIndicator(
+          color: TColors.white,
+          strokeWidth: 2,
+        ),
+      ),
+      showProgressIndicator: true,
+      progressIndicatorBackgroundColor: Colors.transparent,
+      progressIndicatorValueColor: AlwaysStoppedAnimation<Color>(TColors.white),
+    );
+  }
 }

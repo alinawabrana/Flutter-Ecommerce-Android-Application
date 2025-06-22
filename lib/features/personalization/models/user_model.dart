@@ -11,6 +11,10 @@ class UserModel {
   final String username;
   String phoneNumber;
   String profilePicture;
+  Timestamp registeredDate;
+  String country;
+  bool emailMarketing;
+  String status;
 
   /// Constructor for UserModel
   UserModel({
@@ -21,6 +25,10 @@ class UserModel {
     required this.lastName,
     required this.phoneNumber,
     required this.profilePicture,
+    required this.registeredDate,
+    required this.country,
+    required this.emailMarketing,
+    this.status = 'customer',
   });
 
   /// Helper function to get th full name.
@@ -45,13 +53,17 @@ class UserModel {
 
   /// Static function to create an empty user model
   static UserModel empty() => UserModel(
-      id: '',
-      email: '',
-      username: '',
-      firstName: '',
-      lastName: '',
-      phoneNumber: '',
-      profilePicture: '');
+        id: '',
+        email: '',
+        username: '',
+        firstName: '',
+        lastName: '',
+        phoneNumber: '',
+        profilePicture: '',
+        registeredDate: Timestamp.now(),
+        country: '',
+        emailMarketing: false,
+      );
 
   factory UserModel.fromSnapshot(
       DocumentSnapshot<Map<String, dynamic>> document) {
@@ -61,13 +73,17 @@ class UserModel {
 
       // Creating a new UserModel
       return UserModel(
-          id: document.id,
-          email: data['Email'] ?? '',
-          username: data['Username'] ?? '',
-          firstName: data['FirstName'] ?? '',
-          lastName: data['LastName'] ?? '',
-          phoneNumber: data['PhoneNumber'] ?? '',
-          profilePicture: data['ProfilePicture'] ?? '');
+        id: document.id,
+        email: data['Email'] ?? '',
+        username: data['Username'] ?? '',
+        firstName: data['FirstName'] ?? '',
+        lastName: data['LastName'] ?? '',
+        phoneNumber: data['PhoneNumber'] ?? '',
+        profilePicture: data['ProfilePicture'] ?? '',
+        registeredDate: data['RegisteredDate'] ?? Timestamp.now(),
+        country: data['Country'] ?? '',
+        emailMarketing: data['EmailMarketing'] ?? false,
+      );
     } else {
       return UserModel.empty();
     }
@@ -81,6 +97,10 @@ class UserModel {
       'Email': email,
       'PhoneNumber': phoneNumber,
       'ProfilePicture': profilePicture,
+      'RegisteredDate': registeredDate,
+      'Country': country,
+      'EmailMarketing': emailMarketing,
+      'status': status,
     };
   }
 }

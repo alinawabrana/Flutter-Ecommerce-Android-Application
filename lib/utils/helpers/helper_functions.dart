@@ -116,4 +116,9 @@ class THelperFunctions {
     }
     return wrappedList;
   }
+
+  static String calculateAmount(int amount) {
+    final calculatedAmount = amount * 100;
+    return calculatedAmount.toString();
+  }
 }

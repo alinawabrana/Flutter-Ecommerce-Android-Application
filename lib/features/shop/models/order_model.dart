@@ -7,7 +7,11 @@ import 'package:e_commerce_app/utils/helpers/helper_functions.dart';
 class OrderModel {
   final String id;
   final String userId;
+
+  final String status;
+
   final OrderStatus status;
+
   final double totalAmount;
   final DateTime orderDate;
   final String paymentMethod;
@@ -17,6 +21,15 @@ class OrderModel {
 
   OrderModel({
     required this.id,
+
+    this.userId = '',
+    required this.status,
+    required this.totalAmount,
+    required this.orderDate,
+    this.paymentMethod = 'Paypal',
+    this.address,
+    this.deliveryDate,
+
     required this.userId,
     required this.status,
     required this.totalAmount,
@@ -24,6 +37,7 @@ class OrderModel {
     required this.paymentMethod,
     required this.address,
     required this.deliveryDate,
+
     required this.items,
   });
 
@@ -33,16 +47,25 @@ class OrderModel {
       ? THelperFunctions.getFormattedDate(deliveryDate!)
       : '';
 
+  String get orderStatusText => status == OrderStatus.delivered.name
+      ? 'Delivered'
+      : status == OrderStatus.shipped.name
+
   String get orderStatusText => status == OrderStatus.delivered
       ? 'Delivered'
       : status == OrderStatus.shipped
+
           ? 'Shipment on the Way'
           : 'Processing';
 
   static OrderModel empty() => OrderModel(
         id: '',
         userId: '',
+
+        status: OrderStatus.cancelled.name,
+
         status: OrderStatus.cancelled,
+
         totalAmount: 0.0,
         orderDate: DateTime.now(),
         paymentMethod: '',
@@ -55,12 +78,20 @@ class OrderModel {
     return {
       'Id': id,
       'UserId': userId,
+
+      'Status': status,
+
       'Status': status.toString(),
+
       'TotalAmount': totalAmount,
       'OrderDate': orderDate,
       'PaymentMethod': paymentMethod,
       'Address': address?.toJson(),
+
+      'DeliveryDate': deliveryDate ?? DateTime.now(),
+
       'DeliveryDate': deliveryDate,
+
       'Items': items.map((item) => item.toJson()).toList(),
     };
   }
@@ -74,9 +105,14 @@ class OrderModel {
     return OrderModel(
       id: data['Id'] as String? ?? '',
       userId: data['UserId'] as String? ?? '',
+
+      status:
+          OrderStatus.values.firstWhere((e) => e.name == data['Status']).name,
+
       status: OrderStatus.values.firstWhere(
           (e) => e.toString() == data['Status'],
           orElse: () => OrderStatus.processing),
+
       totalAmount: (data['TotalAmount'] as num?)?.toDouble() ?? 0.0,
       orderDate: (data['OrderDate'] as Timestamp?)?.toDate() ?? DateTime.now(),
       paymentMethod: data['PaymentMethod'] as String? ?? 'Unknown',

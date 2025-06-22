@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce_app/data/repositories/authentication/authentication_repository.dart';
 import 'package:e_commerce_app/data/repositories/user/user_repository.dart';
 import 'package:e_commerce_app/features/authentication/controllers/network_manager/network_manager.dart';
@@ -12,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
 
+import '../../../utils/helpers/current_location.dart';
 import '../screens/profile/widgets/reAuthLogin/re_auth_login_form.dart';
 
 class UserController extends GetxController {
@@ -43,6 +45,12 @@ class UserController extends GetxController {
     fetchUserRecord();
   }
 
+  /// Method to set the current date and time
+  static Timestamp getCurrentDate() {
+    DateTime currentDate = DateTime.now();
+    return Timestamp.fromDate(currentDate);
+  }
+
   /// Function to saveUserData to Fire Store
   Future<void> saveUserRecord(UserCredential? userCredentials) async {
     try {
@@ -52,21 +60,27 @@ class UserController extends GetxController {
       //  If there is no record
       if (user.value.id.isEmpty) {
         if (userCredentials != null) {
+          String? country = await getCountryFromIP();
+          print('Country: $country');
           final nameParts =
               UserModel.nameParts(userCredentials.user!.displayName ?? '');
           final username = UserModel.generateUsername(
               userCredentials.user!.displayName ?? '');
 
           final newUser = UserModel(
-              id: userCredentials.user!.uid ?? '',
-              email: userCredentials.user!.email ?? '',
-              username: username,
-              firstName: nameParts.length > 1
-                  ? nameParts.sublist(1, nameParts.length - 1).join(' ')
-                  : nameParts[0],
-              lastName: nameParts[nameParts.length],
-              phoneNumber: userCredentials.user!.phoneNumber ?? '',
-              profilePicture: userCredentials.user!.photoURL ?? '');
+            id: userCredentials.user!.uid ?? '',
+            email: userCredentials.user!.email ?? '',
+            username: username,
+            firstName: nameParts.length > 1
+                ? nameParts.sublist(1, nameParts.length - 1).join(' ')
+                : nameParts[0],
+            lastName: nameParts[nameParts.length],
+            phoneNumber: userCredentials.user!.phoneNumber ?? '',
+            profilePicture: userCredentials.user!.photoURL ?? '',
+            registeredDate: getCurrentDate(),
+            country: 'Pakistan',
+            emailMarketing: true,
+          );
 
           // Save user data
           await userRepository.saveUserRecord(newUser);
@@ -86,7 +100,7 @@ class UserController extends GetxController {
       final user = await userRepository.fetchUserDetails();
       this.user(user);
       profileLoading.value = false;
-    } catch (e) {
+    } catch (e, stacktrace) {
       user(UserModel.empty());
       TLoaders.warningSnackBar(
           title: 'Data not Fetched!',
@@ -193,7 +207,7 @@ class UserController extends GetxController {
     }
   }
 
-  uploadUserProfilePicture() async {
+  Future<void> uploadUserProfilePicture() async {
     try {
       final image = await ImagePicker().pickImage(
           source: ImageSource.gallery,

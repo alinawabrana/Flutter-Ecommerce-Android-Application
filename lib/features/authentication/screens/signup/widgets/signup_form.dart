@@ -8,6 +8,7 @@ import 'package:iconsax/iconsax.dart';
 import '../../../../../utils/constants/sizes.dart';
 import '../../../../../utils/constants/text_strings.dart';
 import '../../../../../utils/helpers/helper_functions.dart';
+import 'email_marketing_checkbox.dart';
 
 class TSignUpForm extends StatelessWidget {
   const TSignUpForm({
@@ -114,6 +115,10 @@ class TSignUpForm extends StatelessWidget {
 
           /// Terms and Condition CheckBox
           const TTermsAndConditionCheckbox(),
+          const SizedBox(
+            height: TSizes.spaceBtwSections,
+          ),
+          const EmailMarketingCheckbox(),
           const SizedBox(
             height: TSizes.spaceBtwSections,
           ),
