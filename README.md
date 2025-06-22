@@ -38,6 +38,11 @@ Whether you're shopping for fashion, electronics, sports, or groceries – this 
 - Clean, responsive design for phones & tablets
 - Smooth transitions & animations
 
+### Payment Integration
+- stripe payment method used
+- used firebase functions for calling stripe API with secured keys
+- any type of card payment can be done
+
 ---
 
 ## Tech Stack
@@ -49,6 +54,7 @@ Whether you're shopping for fashion, electronics, sports, or groceries – this 
 | **Firebase Auth**  | User authentication                     |
 | **Cloud Firestore**| Product & order database                |
 | **Firebase Storage**| Product image hosting                   |
+| **Firebase Functions**| Calling External API in Secured Way  |
 | **GetX**           | State management, navigation, dependency injection |
 | **GetStorage**     | Lightweight local storage for session/cart/wishlist |
 | **SharedPreferences** | Persistent key-value storage         |
