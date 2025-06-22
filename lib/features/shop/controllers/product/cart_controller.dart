@@ -180,13 +180,17 @@ class CartController extends GetxController {
     TLocalStorage.instance().saveData('cartItems', cartItemStrings);
   }
 
-  void loadCartItems() {
-    final cartItemStrings =
-        TLocalStorage.instance().readData<List<dynamic>>('cartItems');
-    if (cartItemStrings != null) {
-      cartItem.assignAll(cartItemStrings
-          .map((item) => CartItemModel.fromJson(item as Map<String, dynamic>)));
-      updateCartTotal();
+  void loadCartItems() async {
+    try {
+      final cartItemStrings =
+          TLocalStorage.instance().readData<List<dynamic>>('cartItems');
+      if (cartItemStrings != null) {
+        cartItem.assignAll(cartItemStrings.map(
+            (item) => CartItemModel.fromJson(item as Map<String, dynamic>)));
+        updateCartTotal();
+      }
+    } catch (e) {
+      print('Failed to load cart items: $e');
     }
   }
 

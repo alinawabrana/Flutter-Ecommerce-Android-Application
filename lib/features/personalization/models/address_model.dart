@@ -57,14 +57,14 @@ class AddressModel {
     if (data.isEmpty) return AddressModel.empty();
 
     return AddressModel(
-      id: data['Id'] as String,
-      name: data['Name'] as String,
-      phoneNumber: data['PhoneNumber'] as String,
-      street: data['Street'] as String,
-      city: data['City'] as String,
-      state: data['State'] as String,
-      postalCode: data['PostalCode'] as String,
-      country: data['Country'] as String,
+      id: data['Id'] ?? '',
+      name: data['Name'] ?? '',
+      phoneNumber: data['PhoneNumber'] ?? '',
+      street: data['Street'] ?? '',
+      city: data['City'] ?? '',
+      state: data['State'] ?? '',
+      postalCode: data['PostalCode'] ?? '',
+      country: data['Country'] ?? '',
       dateTime: (data['DateTime'] as Timestamp).toDate(),
       selectedAddress: data['SelectedAddress'] as bool,
     );

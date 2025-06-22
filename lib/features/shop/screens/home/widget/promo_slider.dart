@@ -1,4 +1,5 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:e_commerce_app/common/widgets/images/t_circular_image.dart';
 import 'package:e_commerce_app/common/widgets/shimmer/shimmer_effect.dart';
 import 'package:e_commerce_app/features/shop/controllers/banner_controller.dart';
 import 'package:e_commerce_app/utils/constants/colors.dart';
@@ -6,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../../../common/widgets/custom_shapes/containers/circular_container.dart';
-import '../../../../../common/widgets/images/t_rounded_image.dart';
 import '../../../../../utils/constants/sizes.dart';
 
 class TPromoSlider extends StatelessWidget {
@@ -32,9 +32,12 @@ class TPromoSlider extends StatelessWidget {
             CarouselSlider(
               // To create the custom list depending upon the items included in banners variable we uses the .map property
               items: controller.banners
-                  .map((banner) => TRoundedImage(
-                        imageUrl: banner.imageUrl,
-                        isNetworkImage: false,
+                  .map((banner) => TCircularImage(
+                        image: banner.imageUrl,
+                        isNetworkImage: true,
+                        width: MediaQuery.of(context).size.width,
+                        height: MediaQuery.of(context).size.height,
+                        borderRadius: TSizes.md,
                         onPressed: () => Get.toNamed(banner.targetScreen),
                       ))
                   .toList(),

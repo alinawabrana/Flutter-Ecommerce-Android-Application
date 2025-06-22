@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:e_commerce_app/data/repositories/authentication/authentication_repository.dart';
 import 'package:e_commerce_app/data/repositories/user/user_repository.dart';
 import 'package:e_commerce_app/features/authentication/screens/signup/verify_email.dart';
@@ -8,6 +9,7 @@ import 'package:e_commerce_app/utils/popups/loaders.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
+import '../../../../utils/helpers/current_location.dart';
 import '../network_manager/network_manager.dart';
 
 class SignupController extends GetxController {
@@ -26,6 +28,12 @@ class SignupController extends GetxController {
 
   Rx<bool> togglePassword = true.obs;
   Rx<bool> privacyCheck = true.obs;
+  Rx<bool> emailMarketing = true.obs;
+
+  static Timestamp getCurrentDate() {
+    DateTime currentDate = DateTime.now();
+    return Timestamp.fromDate(currentDate);
+  }
 
   /// -- SignUp
   void signup() async {
@@ -67,16 +75,24 @@ class SignupController extends GetxController {
           .registerWithEmailAndPassword(
               email.text.trim(), password.text.trim());
 
+      // Fetch the current country
+      final position = await getCurrentLocation();
+      final country = await getCountryFromLocation(position);
+
       // Save Authentication user data in the Firebase FireStore
 
       final newUser = UserModel(
-          id: userCredential.user!.uid,
-          email: email.text.trim(),
-          username: username.text.trim(),
-          firstName: firstName.text.trim(),
-          lastName: lastName.text.trim(),
-          phoneNumber: phoneNumber.text.trim(),
-          profilePicture: "");
+        id: userCredential.user!.uid,
+        email: email.text.trim(),
+        username: username.text.trim(),
+        firstName: firstName.text.trim(),
+        lastName: lastName.text.trim(),
+        phoneNumber: phoneNumber.text.trim(),
+        profilePicture: "",
+        registeredDate: getCurrentDate(),
+        country: country!,
+        emailMarketing: emailMarketing.value,
+      );
 
       final userRepository = Get.put(UserRepository());
       await userRepository.saveUserRecord(newUser);

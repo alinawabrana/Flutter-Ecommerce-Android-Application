@@ -65,6 +65,11 @@ class TImages {
   static const String cartAnimation =
       'assets/images/animations/lady-adding-product-in-cart-animation.json';
 
+  static const String paymentSuccessAnimation =
+      'assets/images/animations/120978-payment-successful.json';
+  static const String orderCompleteAnimation =
+      'assets/images/animations/order-complete-car-delivery-animation.json';
+
   // -- OnBoarding Images
   static const String onBoardingImage1 =
       "assets/images/on_boarding_images/sammy-line-searching.gif";

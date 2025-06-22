@@ -25,10 +25,7 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        throw UnsupportedError(
-          'DefaultFirebaseOptions have not been configured for macos - '
-          'you can reconfigure this by running the FlutterFire CLI again.',
-        );
+        return macos;
       case TargetPlatform.windows:
         return windows;
       case TargetPlatform.linux:
@@ -63,13 +60,13 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyBD7mbnuXOV8Lb3YvLLBU5jXWeF-jPymNE',
-    appId: '1:348255973061:ios:e7182d0de9e48b9c618aac',
+    appId: '1:348255973061:ios:515d5ddcdc3f251f618aac',
     messagingSenderId: '348255973061',
     projectId: 'ecommerceapp-e96e4',
     storageBucket: 'ecommerceapp-e96e4.appspot.com',
     androidClientId: '348255973061-bpthrtdnmapkp4rf75t198p3qsp0vjc6.apps.googleusercontent.com',
-    iosClientId: '348255973061-uoqb3s65824f256e4ltotpuqi0lf101j.apps.googleusercontent.com',
-    iosBundleId: 'com.example.eCommerceApp',
+    iosClientId: '348255973061-o757skf1hugqo4fveegj5esn6ueg8ak9.apps.googleusercontent.com',
+    iosBundleId: 'com.alinawab.eCommerceApp',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
@@ -80,6 +77,17 @@ class DefaultFirebaseOptions {
     authDomain: 'ecommerceapp-e96e4.firebaseapp.com',
     storageBucket: 'ecommerceapp-e96e4.appspot.com',
     measurementId: 'G-BEJ5Z190FS',
+  );
+
+  static const FirebaseOptions macos = FirebaseOptions(
+    apiKey: 'AIzaSyBD7mbnuXOV8Lb3YvLLBU5jXWeF-jPymNE',
+    appId: '1:348255973061:ios:e7182d0de9e48b9c618aac',
+    messagingSenderId: '348255973061',
+    projectId: 'ecommerceapp-e96e4',
+    storageBucket: 'ecommerceapp-e96e4.appspot.com',
+    androidClientId: '348255973061-bpthrtdnmapkp4rf75t198p3qsp0vjc6.apps.googleusercontent.com',
+    iosClientId: '348255973061-uoqb3s65824f256e4ltotpuqi0lf101j.apps.googleusercontent.com',
+    iosBundleId: 'com.example.eCommerceApp',
   );
 
 }

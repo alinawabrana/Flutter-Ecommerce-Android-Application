@@ -41,9 +41,9 @@ class CartItemModel {
 
     return CartItemModel(
       productId: data['ProductId'] ?? '',
-      quantity: data['Quantity'] ?? '',
+      quantity: data['Quantity'] ?? 0,
       title: data['Title'] ?? '',
-      price: data['Price']?.toDouble(),
+      price: data['Price']?.toDouble() ?? 0.0,
       image: data['Image'] ?? '',
       brandName: data['BrandName'] ?? '',
       variationId: data['VariationId'] ?? '',
@@ -61,9 +61,9 @@ class CartItemModel {
 
     return CartItemModel(
       productId: data['ProductId'] ?? '',
-      quantity: data['Quantity'] ?? '',
+      quantity: data['Quantity'] ?? 0,
       title: data['Title'] ?? '',
-      price: data['Price']?.toDouble(),
+      price: data['Price']?.toDouble() ?? 0.0,
       image: data['Image'] ?? '',
       brandName: data['BrandName'] ?? '',
       variationId: data['VariationId'] ?? '',
