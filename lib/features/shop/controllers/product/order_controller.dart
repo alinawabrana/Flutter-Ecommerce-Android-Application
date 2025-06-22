@@ -9,7 +9,10 @@ import 'package:e_commerce_app/utils/constants/enums.dart';
 import 'package:e_commerce_app/utils/constants/image_strings.dart';
 import 'package:e_commerce_app/utils/popups/full_screen_loader.dart';
 import 'package:e_commerce_app/utils/popups/loaders.dart';
+
 import 'package:e_commerce_app/utils/services/stripe_payment_service.dart';
+
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -37,12 +40,17 @@ class OrderController extends GetxController {
   /// Add method for order processing
   Future<void> processOrder(double totalAmount) async {
     try {
+
       bool isSuccessFull = await StripeService.instance.makePayment();
 
       if (isSuccessFull == false) {
         TFullScreenLoader.stopLoading();
         return;
       }
+
+      TFullScreenLoader.openLoadingDialog(
+          'Processing your Order', TImages.pencilAnimation);
+
 
       // Get user Authentication Id
       final userId = FirebaseAuth.instance.currentUser!.uid;
@@ -55,7 +63,11 @@ class OrderController extends GetxController {
       final order = OrderModel(
         id: UniqueKey().toString(),
         userId: userId,
+
         status: OrderStatus.processing.name,
+
+        status: OrderStatus.pending,
+
         totalAmount: totalAmount,
         orderDate: DateTime.now(),
         paymentMethod: checkoutController.selectedPaymentMethod.value.name,
